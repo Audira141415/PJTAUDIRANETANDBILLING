@@ -1,0 +1,45 @@
+# Repository-level ignore for Flutter / Android / iOS / Node / general
+
+# Flutter / Dart
+.dart_tool/
+.pub/
+build/
+.packages
+pubspec.lock
+generated_plugin_registrant.dart
+
+# Android / Gradle
+/.gradle/
+**/build/
+local.properties
+*.iml
+
+# iOS
+Pods/
+ios/Pods/
+Runner.xcworkspace/
+*.xcworkspace
+*.xcuserdata
+
+# IDEs
+.idea/
+.vscode/
+
+# Node
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+package-lock.json
+pnpm-lock.yaml
+
+# Files to avoid committing (secrets, keystore, etc.)
+*.keystore
+*.jks
+google-services.json
+*.env
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
