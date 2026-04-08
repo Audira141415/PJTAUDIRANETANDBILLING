@@ -1,17 +1,19 @@
-import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
+import { Controller, Post, Body, UnauthorizedException, HttpCode, HttpStatus } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { CustomerLoginDto } from './dto/customer-login.dto';
 
-@Controller('auth')
+@Controller('auth/customer')
 export class CustomerAuthController {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
   ) {}
 
-  @Post('login/customer')
-  async customerLogin(@Body() loginDto: { email: string; password: string }) {
+  @Post('login')
+  @HttpCode(HttpStatus.CREATED)
+  async customerLogin(@Body() loginDto: CustomerLoginDto) {
     // Find customer by email
     const customer = await this.prisma.customer.findUnique({
       where: { email: loginDto.email },

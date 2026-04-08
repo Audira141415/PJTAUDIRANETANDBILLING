@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import axios from 'axios';
 import { Database, Download, Trash2, RefreshCw, HardDrive, AlertCircle } from 'lucide-react';
@@ -22,7 +23,7 @@ export default function BackupManagement() {
   const fetchBackups = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:4000/backup/list');
+      const response = await axios.get('${API_BASE_URL}/backup/list');
       setBackups(response.data.backups);
       setTotalSize(response.data.totalSize);
     } catch (error) {
@@ -38,7 +39,7 @@ export default function BackupManagement() {
 
     try {
       setCreating(true);
-      const response = await axios.post('http://localhost:4000/backup/create');
+      const response = await axios.post('${API_BASE_URL}/backup/create');
       
       if (response.data.success) {
         alert(`Backup created successfully!\n${response.data.filename}\nSize: ${(response.data.size / (1024 * 1024)).toFixed(2)} MB`);
@@ -54,14 +55,14 @@ export default function BackupManagement() {
   };
 
   const downloadBackup = (filename: string) => {
-    window.open(`http://localhost:4000/backup/download/${filename}`, '_blank');
+    window.open(`${API_BASE_URL}/backup/download/${filename}`, '_blank');
   };
 
   const deleteBackup = async (filename: string) => {
     if (!confirm(`Delete backup: ${filename}?`)) return;
 
     try {
-      const response = await axios.delete(`http://localhost:4000/backup/${filename}`);
+      const response = await axios.delete(`${API_BASE_URL}/backup/${filename}`);
       
       if (response.data.success) {
         alert('Backup deleted successfully');
@@ -78,7 +79,7 @@ export default function BackupManagement() {
     if (!confirm(`⚠️ WARNING ⚠️\n\nRestore database from backup: ${filename}?\n\nThis will OVERWRITE the current database!\n\nAre you sure?`)) return;
 
     try {
-      const response = await axios.post(`http://localhost:4000/backup/restore/${filename}`);
+      const response = await axios.post(`${API_BASE_URL}/backup/restore/${filename}`);
       
       if (response.data.success) {
         alert('Database restored successfully!\n\nPlease restart the backend server.');
@@ -94,7 +95,7 @@ export default function BackupManagement() {
     if (!confirm('Clean old backups (older than 30 days)?')) return;
 
     try {
-      const response = await axios.post('http://localhost:4000/backup/clean');
+      const response = await axios.post('${API_BASE_URL}/backup/clean');
       alert(response.data.message);
       fetchBackups();
     } catch (error) {

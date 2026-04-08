@@ -37,22 +37,29 @@ export default function Register() {
     }
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      router.push('/login')
-    } catch (err) {
-      setError('Registrasi gagal. Silakan coba lagi.')
-    } finally {
-      setLoading(false)
-    }
-  }
+        const response = await fetch('http://localhost:1993/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            name: formData.name,
+            password: formData.password,
+            role: 'BILLING', // Default role for registration
+          }),
+        })
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-5xl">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center space-x-4 mb-4">
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Registrasi gagal')
+        }
+
+        // Success - redirect to login
+        router.push('/login?registered=true')
+      } catch (err: any) {
+        setError(err.message || 'Registrasi gagal. Silakan coba lagi.')
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center transform -rotate-12">
                 <div className="w-7 h-7 border-3 border-white rounded-lg transform rotate-12"></div>
               </div>

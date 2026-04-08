@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1993';
 
 export const api = {
   // Auth endpoints
@@ -830,6 +830,127 @@ export const api = {
         body: JSON.stringify({ status }),
       });
       if (!res.ok) throw new Error('Failed to update attendance status');
+      return res.json();
+    },
+  },
+
+  // Customer Self-Service endpoints
+  customer: {
+    getDashboard: async (token: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/dashboard`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch dashboard');
+      return res.json();
+    },
+    
+    getProfile: async (token: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/profile`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch profile');
+      return res.json();
+    },
+    
+    updateProfile: async (token: string, data: { name?: string; phone?: string; address?: string }) => {
+      const res = await fetch(`${API_BASE_URL}/customer/profile`, {
+        method: 'PUT',
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Failed to update profile');
+      return res.json();
+    },
+    
+    getInvoices: async (token: string, page = 1, limit = 10, status?: string) => {
+      const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+      if (status) params.append('status', status);
+      const res = await fetch(`${API_BASE_URL}/customer/invoices?${params}`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch invoices');
+      return res.json();
+    },
+    
+    getInvoiceDetail: async (token: string, invoiceId: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/invoices/${invoiceId}`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch invoice detail');
+      return res.json();
+    },
+    
+    getPackages: async (token: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/packages`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch packages');
+      return res.json();
+    },
+    
+    getCurrentPackage: async (token: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/package/current`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch current package');
+      return res.json();
+    },
+    
+    getTickets: async (token: string, page = 1, limit = 10, status?: string) => {
+      const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+      if (status) params.append('status', status);
+      const res = await fetch(`${API_BASE_URL}/customer/tickets?${params}`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch tickets');
+      return res.json();
+    },
+    
+    getTicketDetail: async (token: string, ticketId: string) => {
+      const res = await fetch(`${API_BASE_URL}/customer/tickets/${ticketId}`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch ticket detail');
+      return res.json();
+    },
+    
+    createTicket: async (token: string, data: { title: string; description: string; priority?: string }) => {
+      const res = await fetch(`${API_BASE_URL}/customer/tickets`, {
+        method: 'POST',
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Failed to create ticket');
       return res.json();
     },
   },

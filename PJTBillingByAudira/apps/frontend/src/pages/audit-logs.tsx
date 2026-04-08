@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import axios from 'axios';
 import { Activity, Filter, Download, Eye, X } from 'lucide-react';
@@ -60,7 +61,7 @@ export default function AuditLogs() {
       if (filters.startDate) params.append('startDate', filters.startDate);
       if (filters.endDate) params.append('endDate', filters.endDate);
 
-      const response = await axios.get(`http://localhost:4000/audit/logs?${params}`);
+      const response = await axios.get(`${API_BASE_URL}/audit/logs?${params}`);
       setLogs(response.data.logs);
       setPagination(response.data.pagination);
     } catch (error) {

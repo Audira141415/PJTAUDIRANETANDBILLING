@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react'
@@ -12,6 +12,14 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+
+  useEffect(() => {
+    // Check if user just registered
+    if (router.query.registered === 'true') {
+      setSuccessMessage('Registrasi berhasil! Silakan login dengan akun Anda.')
+    }
+  }, [router.query])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -78,6 +86,12 @@ export default function Login() {
               </div>
               <p className="text-gray-600">Silahkan masuk untuk melanjutkan</p>
             </div>
+
+            {successMessage && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+                {successMessage}
+              </div>
+            )}
 
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">

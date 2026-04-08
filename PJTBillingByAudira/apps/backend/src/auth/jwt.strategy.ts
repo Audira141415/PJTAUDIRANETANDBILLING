@@ -22,7 +22,38 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    // Verify user still exists in database
+    // Check if it's a customer or user token
+    if (payload.type === 'customer') {
+      // Verify customer still exists
+      const customer = await this.prisma.customer.findUnique({
+        where: { id: payload.sub },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          status: true,
+        },
+      });
+
+      if (!customer) {
+        throw new UnauthorizedException('Customer tidak ditemukan atau telah dihapus');
+      }
+
+      if (customer.status !== 'active') {
+        throw new UnauthorizedException('Akun customer tidak aktif');
+      }
+
+      // Return customer object that will be attached to request
+      return {
+        userId: payload.sub,
+        sub: payload.sub,
+        email: payload.email,
+        name: customer.name,
+        type: 'customer',
+      };
+    }
+
+    // Default: Handle as regular user
     const user = await this.prisma.user.findUnique({
       where: { id: payload.sub },
       select: {
@@ -41,10 +72,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // Return user object that will be attached to request
     return {
       userId: payload.sub,
+      sub: payload.sub,
       email: payload.email,
       role: payload.role,
       name: user.name,
       tenantId: user.tenantId,
+      type: 'user',
     };
   }
 }

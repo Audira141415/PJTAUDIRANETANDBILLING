@@ -13,7 +13,7 @@ export default function TestAPI() {
   const [results, setResults] = useState<TestResult[]>([])
   const [testing, setTesting] = useState(false)
 
-  const API_BASE = 'http://localhost:4000'
+  const API_BASE = '${API_BASE_URL}'
 
   const testEndpoints = async () => {
     setTesting(true)

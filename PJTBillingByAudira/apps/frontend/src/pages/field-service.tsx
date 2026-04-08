@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '../components/Layout';
 import { 
   MapPin, Users, Calendar, Clock, AlertCircle, CheckCircle, 
@@ -61,7 +62,7 @@ export default function FieldServiceManagement() {
   const loadWorkOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/field-service/jobs', {
+      const response = await fetch('${API_BASE_URL}/field-service/jobs', {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -144,7 +145,7 @@ export default function FieldServiceManagement() {
   const loadTechnicians = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/operational/technicians', {
+      const response = await fetch('${API_BASE_URL}/operational/technicians', {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -178,7 +179,7 @@ export default function FieldServiceManagement() {
   const loadStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/field-service/stats', {
+      const response = await fetch('${API_BASE_URL}/field-service/stats', {
         headers: {
           'Authorization': `Bearer ${token}`,
         }

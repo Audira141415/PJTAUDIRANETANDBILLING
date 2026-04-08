@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
+import { API_ENDPOINTS } from '../config/api';
 import { 
   Clock, Camera, MapPin, CheckCircle, User, Calendar
 } from 'lucide-react';
@@ -49,7 +50,7 @@ export default function AttendanceCheckIn() {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/attendance/status/${userId}`, {
+      const response = await fetch(API_ENDPOINTS.ATTENDANCE.STATUS(userId), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -140,10 +141,10 @@ export default function AttendanceCheckIn() {
     try {
       const coords = await getLocation();
       const token = localStorage.getItem('token');
-      const endpoint = checkInOut === 'in' ? 'check-in' : 'check-out';
+      const endpoint = checkInOut === 'in' ? API_ENDPOINTS.ATTENDANCE.CHECKIN : API_ENDPOINTS.ATTENDANCE.CHECKOUT;
       const photoField = checkInOut === 'in' ? 'checkInPhoto' : 'checkOutPhoto';
 
-      const response = await fetch(`http://localhost:4000/attendance/${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

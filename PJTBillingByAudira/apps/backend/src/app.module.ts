@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
@@ -39,6 +39,13 @@ import { SalaryModule } from './salary/salary.module';
 import { LeaveModule } from './leave/leave.module';
 import { ScheduleModule as WorkScheduleModule } from './schedule/schedule.module';
 import { PerformanceModule } from './performance/performance.module';
+import { SanitizeInputMiddleware } from './common/middleware/sanitize-input.middleware';
+import { CustomerModule } from './customer/customer.module';
+import { AdminCustomerModule } from './admin/customer/admin-customer.module';
+import { PackageModule } from './package/package.module';
+import { ServiceModule } from './service/service.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -50,6 +57,12 @@ import { PerformanceModule } from './performance/performance.module';
     HealthModule,
     DashboardModule,
     AuthModule,
+    CustomerModule,
+    AdminCustomerModule,
+    PackageModule,
+    ServiceModule,
+    InvoiceModule,
+    TicketModule,
     MikrotikModule,
     PelangganModule,
     KeuanganModule,
@@ -87,4 +100,9 @@ import { PerformanceModule } from './performance/performance.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    // Apply sanitization middleware to all routes
+    consumer.apply(SanitizeInputMiddleware).forRoutes('*');
+  }
+}

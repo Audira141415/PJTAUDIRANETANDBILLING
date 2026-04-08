@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import { 
   Receipt, 
@@ -65,7 +66,7 @@ export default function InvoicePage() {
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:4000/keuangan/invoices', {
+      const response = await fetch('${API_BASE_URL}/keuangan/invoices', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -86,7 +87,7 @@ export default function InvoicePage() {
   const fetchCustomers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/pelanggan', {
+      const response = await fetch('${API_BASE_URL}/pelanggan', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -105,7 +106,7 @@ export default function InvoicePage() {
   const fetchCustomerInvoices = async (customerId: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/keuangan/invoices?customerId=${customerId}`, {
+      const response = await fetch(`${API_BASE_URL}/keuangan/invoices?customerId=${customerId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -126,7 +127,7 @@ export default function InvoicePage() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/billing/generate-invoices', {
+      const response = await fetch('${API_BASE_URL}/billing/generate-invoices', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -156,7 +157,7 @@ export default function InvoicePage() {
 
       console.log('Sending email to:', invoice.customer.email);
 
-      const response = await fetch('http://localhost:4000/billing/send-reminders', {
+      const response = await fetch('${API_BASE_URL}/billing/send-reminders', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -202,7 +203,7 @@ export default function InvoicePage() {
 
       // Log the action
       const token = localStorage.getItem('token');
-      await fetch('http://localhost:4000/audit/log', {
+      await fetch('${API_BASE_URL}/audit/log', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -264,7 +265,7 @@ export default function InvoicePage() {
     console.log('Downloading PDF for invoice:', invoice.invoiceNumber);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/keuangan/invoices/${invoice.id}/pdf`, {
+      const response = await fetch(`${API_BASE_URL}/keuangan/invoices/${invoice.id}/pdf`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -286,7 +287,7 @@ export default function InvoicePage() {
         alert('✅ PDF berhasil didownload: ' + invoice.invoiceNumber + '.pdf');
         
         // Log the action
-        await fetch('http://localhost:4000/audit/log', {
+        await fetch('${API_BASE_URL}/audit/log', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

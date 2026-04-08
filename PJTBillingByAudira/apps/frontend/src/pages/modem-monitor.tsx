@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import axios from 'axios';
 import { Wifi, WifiOff, Activity, RefreshCw, Router, CheckCircle, XCircle, Clock } from 'lucide-react';
@@ -48,7 +49,7 @@ export default function ModemMonitor() {
 
   const fetchModems = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/modem/list');
+      const response = await axios.get('${API_BASE_URL}/modem/list');
       setModems(response.data);
     } catch (error) {
       console.error('Failed to fetch modems:', error);
@@ -60,7 +61,7 @@ export default function ModemMonitor() {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/modem/stats');
+      const response = await axios.get('${API_BASE_URL}/modem/stats');
       setStats(response.data);
     } catch (error) {
       console.error('Failed to fetch stats:', error);

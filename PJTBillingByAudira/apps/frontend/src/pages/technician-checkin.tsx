@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { 
@@ -49,7 +50,7 @@ export default function TechnicianCheckIn() {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/field-service/technician/${technicianId}/today`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/technician/${technicianId}/today`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -153,7 +154,7 @@ export default function TechnicianCheckIn() {
       const token = localStorage.getItem('token');
       
       // Check-in dengan lokasi dan foto selfie
-      const response = await fetch(`http://localhost:4000/field-service/jobs/${pendingCheckIn.id}/start`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/jobs/${pendingCheckIn.id}/start`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -197,7 +198,7 @@ export default function TechnicianCheckIn() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/field-service/jobs/${job.id}/complete`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/jobs/${job.id}/complete`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

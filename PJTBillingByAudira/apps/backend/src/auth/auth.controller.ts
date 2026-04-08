@@ -2,6 +2,7 @@ import { Controller, Post, Get, Body, HttpCode, HttpStatus, Req, Res, UseGuards 
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { Request, Response } from 'express';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -15,7 +16,7 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   async login(
-    @Body() loginDto: any,
+    @Body() loginDto: LoginDto,
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
@@ -32,9 +33,10 @@ export class AuthController {
       path: '/',
     });
 
-    // Return user info without token
+    // Return user info with token (for API clients and testing)
     return {
       message: result.message,
+      access_token: result.access_token,  // Also return token in response body
       user: result.user,
     };
   }

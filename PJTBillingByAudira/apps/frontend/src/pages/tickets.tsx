@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import { 
   TicketIcon, 
@@ -57,7 +58,7 @@ export default function TicketsPage() {
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:4000/operational/tickets', {
+      const response = await fetch('${API_BASE_URL}/operational/tickets', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -78,7 +79,7 @@ export default function TicketsPage() {
   const handleCreateTicket = async (formData: any) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/operational/tickets', {
+      const response = await fetch('${API_BASE_URL}/operational/tickets', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -101,7 +102,7 @@ export default function TicketsPage() {
   const handleUpdateStatus = async (ticketId: string, newStatus: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/operational/tickets/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/operational/tickets/${ticketId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

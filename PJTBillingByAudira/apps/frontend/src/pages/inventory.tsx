@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import { Package, Plus, Search, Filter, Edit, Trash2, User, Calendar, AlertCircle } from 'lucide-react';
 
@@ -35,14 +36,14 @@ export default function Inventory() {
       if (filterType) params.append('type', filterType);
       if (filterStatus) params.append('status', filterStatus);
       
-      const equipmentRes = await fetch(`http://localhost:4000/inventory/equipment?${params}`, {
+      const equipmentRes = await fetch(`${API_BASE_URL}/inventory/equipment?${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const equipmentData = await equipmentRes.json();
       setEquipment(equipmentData.equipment || []);
 
       // Fetch statistics
-      const statsRes = await fetch('http://localhost:4000/inventory/stats', {
+      const statsRes = await fetch('${API_BASE_URL}/inventory/stats', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const statsData = await statsRes.json();
@@ -88,7 +89,7 @@ export default function Inventory() {
   const handleAddEquipment = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/inventory/equipment', {
+      const response = await fetch('${API_BASE_URL}/inventory/equipment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +130,7 @@ export default function Inventory() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/inventory/equipment/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/inventory/equipment/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

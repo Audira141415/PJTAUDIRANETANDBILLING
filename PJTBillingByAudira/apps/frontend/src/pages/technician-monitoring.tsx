@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { 
@@ -64,7 +65,7 @@ export default function TechnicianMonitoring() {
       const token = localStorage.getItem('token');
       
       // Load all work orders to get unique technicians
-      const workOrdersResponse = await fetch('http://localhost:4000/field-service/jobs', {
+      const workOrdersResponse = await fetch('${API_BASE_URL}/field-service/jobs', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -131,7 +132,7 @@ export default function TechnicianMonitoring() {
       
       // Load check-in history
       const historyResponse = await fetch(
-        `http://localhost:4000/field-service/check-in-history?date=${selectedDate}`,
+        `${API_BASE_URL}/field-service/check-in-history?date=${selectedDate}`,
         { headers: { 'Authorization': `Bearer ${token}` }}
       );
       

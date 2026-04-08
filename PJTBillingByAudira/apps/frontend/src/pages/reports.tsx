@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import Layout from '@/components/Layout';
 import axios from 'axios';
 import {
@@ -40,10 +41,10 @@ export default function ReportsDashboard() {
       setLoading(true);
 
       const [summaryRes, revenueRes, customerRes, paymentRes] = await Promise.all([
-        axios.get('http://localhost:4000/reports/dashboard'),
-        axios.get('http://localhost:4000/reports/revenue', { params: dateRange }),
-        axios.get('http://localhost:4000/reports/customer-growth', { params: dateRange }),
-        axios.get('http://localhost:4000/reports/payment-success', { params: dateRange }),
+        axios.get('${API_BASE_URL}/reports/dashboard'),
+        axios.get('${API_BASE_URL}/reports/revenue', { params: dateRange }),
+        axios.get('${API_BASE_URL}/reports/customer-growth', { params: dateRange }),
+        axios.get('${API_BASE_URL}/reports/payment-success', { params: dateRange }),
       ]);
 
       setSummary(summaryRes.data);
@@ -60,7 +61,7 @@ export default function ReportsDashboard() {
   const downloadCSV = async (reportType: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/reports/${reportType}/export`,
+        `${API_BASE_URL}/reports/${reportType}/export`,
         {
           params: dateRange,
           responseType: 'blob',

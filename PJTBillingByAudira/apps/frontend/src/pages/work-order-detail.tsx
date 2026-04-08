@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { 
@@ -56,7 +57,7 @@ export default function WorkOrderDetail() {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/field-service/jobs/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/jobs/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -117,7 +118,7 @@ export default function WorkOrderDetail() {
       });
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/field-service/jobs/${id}/photos`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/jobs/${id}/photos`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -149,7 +150,7 @@ export default function WorkOrderDetail() {
   const handleUpdateStatus = async (newStatus: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:4000/field-service/jobs/${id}/status`, {
+      const response = await fetch(`${API_BASE_URL}/field-service/jobs/${id}/status`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

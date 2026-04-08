@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { 
@@ -106,7 +107,7 @@ export default function AttendanceMonitoring() {
       
       // Load attendance data
       const attendanceResponse = await fetch(
-        `http://localhost:4000/attendance/date/${selectedDate}`,
+        `${API_BASE_URL}/attendance/date/${selectedDate}`,
         { headers: { 'Authorization': `Bearer ${token}` }}
       );
       
@@ -117,7 +118,7 @@ export default function AttendanceMonitoring() {
 
       // Load stats
       const statsResponse = await fetch(
-        `http://localhost:4000/attendance/stats?date=${selectedDate}`,
+        `${API_BASE_URL}/attendance/stats?date=${selectedDate}`,
         { headers: { 'Authorization': `Bearer ${token}` }}
       );
       
@@ -180,7 +181,7 @@ export default function AttendanceMonitoring() {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:4000/attendance/${editingRecord.id}/status`,
+        `${API_BASE_URL}/attendance/${editingRecord.id}/status`,
         {
           method: 'PATCH',
           headers: {
