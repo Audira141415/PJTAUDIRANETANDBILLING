@@ -1,10 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
-title AUDIRA NET & BILLING - GitHub Save and Push Utility
+title AUDIRA NET ^& BILLING - GitHub Save and Push Utility
 cd /d "%~dp0"
 
 echo ==============================================================================
-echo           AUDIRA NET & BILLING - GITHUB SAVE AND PUSH UTILITY
+echo           AUDIRA NET ^& BILLING - GITHUB SAVE AND PUSH UTILITY
 echo                  Created by Agus Dwi Rianto (AUDIRA)
 echo ==============================================================================
 echo Remote URL : https://github.com/Audira141415/PJTAUDIRANETANDBILLING.git
