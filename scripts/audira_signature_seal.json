@@ -1,0 +1,16 @@
+{
+  "identity": {
+    "brand": "AUDIRA",
+    "author": "Agus Dwi Rianto",
+    "alias": "AUDIRA",
+    "organization": "Audira Multimedia Digital / Audira Sukses Mandiri",
+    "official_domain": "https://audira.my.id",
+    "official_email": "agusdwirianto@gmail.com",
+    "license": "AUDIRA Commercial & Proprietary Software License",
+    "security_protocol": "Zero-Trust Cryptographic Identity Seal (Ed25519 + SHA256)",
+    "immutable_identifier": "AUDIRA-ID-SEAL-2026-AGUS-DWI-RIANTO-PROPRIETARY"
+  },
+  "sha256_fingerprint": "3d20f799144f963dc00d90384b19fbed92320438f35f235065083c9e3671b059",
+  "ed25519_public_key_hex": "7ce7954e23732492e0e7dcbf67b9aca471296484eff4cded55c6bb5504b78cd6",
+  "ed25519_signature_hex": "930ec63509c9762a3cbf285359c77f42a728078b9dd7bdaa851f91d155a57f4c1d2c2bf6cf380a89d2a8b1f6eafe35385be292b541ede5c9c812cdc5f8ddab0d"
+}

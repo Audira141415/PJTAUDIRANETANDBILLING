@@ -1,7 +1,7 @@
 const http = require('http');
 
 const API_URL = 'localhost';
-const API_PORT = 1993;
+const API_PORT = process.env.PORT || 3218;
 
 let authToken = '';
 let createdPackageId = '';
@@ -65,7 +65,7 @@ async function test1_Login() {
   console.log('\n=== TEST 1: Login Admin ===');
   try {
     const response = await makeRequest('POST', '/auth/login', {
-      email: 'admin@audira.co.id',
+      email: 'admin@audira.net',
       password: 'admin123'
     });
 

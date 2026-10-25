@@ -33,9 +33,11 @@ yarn-error.log
 package-lock.json
 pnpm-lock.yaml
 
-# Files to avoid committing (secrets, keystore, etc.)
+# Files to avoid committing (secrets, keystore, private keys, etc.)
 *.keystore
 *.jks
+*.key
+.audira_author.key
 google-services.json
 *.env
 *.local
@@ -43,3 +45,7 @@ google-services.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Independent Sub-Repositories (Managed via their own Git & save.bat)
+AUDIRA-NET/
+AUDIRA-BILLING/
