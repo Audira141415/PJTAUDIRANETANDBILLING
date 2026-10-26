@@ -50,6 +50,20 @@
   - Selected Works Spotlight: Showcase 3 studi kasus riil langsung di beranda.
   - Objection-Buster FAQ Accordion: Penanganan keraguan klien secara interaktif.
 
+### Version 1.2.0 (Customer Telemetry, Dynamic Billing & Instant CoA Restore)
+- **Fase 1: Customer Beranda & Real-Time Telemetry**:
+  - Backend NestJS endpoint `@Get('telemetry')` di `CustomerController` (`/customer/telemetry`).
+  - Mobile Flutter client `BackendApiService.getCustomerTelemetry()`.
+  - Visual Real-time telemetry strip (Ping, Jitter, Packet Loss, Optical Signal -19.4 dBm).
+  - Multi-Zone FUP Radial Gauge (<70% Safe, 70-90% Warning, >90% Turbo Booster).
+  - Proactive Maintenance Banner berbasis kondisi OLT/ODP area pelanggan.
+- **Fase 2: Billing & Instant RADIUS CoA Unblock ("Bayar Langsung Nyala")**:
+  - Backend NestJS endpoints `@Get('invoices/:id/breakdown')` dan `@Post('invoices/:id/pay')` dengan Idempotency Key protection.
+  - Autonomous RADIUS CoA unblock: Mengirim Disconnect-Request UDP 3799 ke MikroTik Core Router untuk memulihkan sesi isolir pelanggan ke pool reguler dalam < 2 detik.
+  - Mobile dynamic breakdown UI di `CustomerTagihanTab` (Biaya Pokok, Sewa ONT/STB, PPN 11% UU HPP, Diskon Loyalitas) lengkap dengan interactive bottom sheet modal.
+  - Multi-Rail Real-Time Checkout di `PaymentPage` (QRIS Dinamis 15m polling, BCA/Mandiri/BNI Virtual Account, E-Wallet GoPay/OVO/DANA).
+  - E-Receipt & Thermal Print Studio: Kwitansi resmi PDF bertanda tangan digital Agus Dwi Rianto dan tombol direct WhatsApp receipt sharing.
+
 ---
 
 ## 2. Roadmap Pengembangan Masa Depan (Future Roadmap)
