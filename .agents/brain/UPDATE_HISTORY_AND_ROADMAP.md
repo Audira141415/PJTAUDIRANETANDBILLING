@@ -1,54 +1,28 @@
-# UPDATE HISTORY & ROADMAP — AUDIRA DEV
-> **Version Changelog, Milestone Tracker, and Future Development Roadmap**  
-> *Riwayat Mutasi Proyek dan Rencana Pengembangan Fitur Jangka Panjang.*
+# UPDATE HISTORY & ROADMAP — AUDIRA-NET & BILLING ECOSYSTEM
+
+> **Version Changelog, Milestone History, and Future ISP Architecture Roadmap**  
+> *Riwayat Mutasi Proyek dan Rencana Pengembangan Fitur Ekosistem ISP Jangka Panjang.*  
+> **Author & Maintainer:** Agus Dwi Rianto (AUDIRA)  
 
 ---
 
 ## 1. Version Changelog
 
-### Version 1.0.0 (Status Saat Ini — Production Ready & Live)
-- **Framework & Foundation**:
-  - Inisialisasi Next.js 16 (App Router) dengan React 19 dan TypeScript strict mode.
-  - Penataan styling modern menggunakan Tailwind CSS v4 dengan sistem token kustom di `styles/globals.css`.
-  - Integrasi tema ganda Light / Dark mode dengan penyimpanan preferensi di localStorage (`ThemeToggle.tsx`).
-- **Desain & Animasi Interaktif**:
-  - Implementasi estetika Neo-Brutalism dengan utilitas `.brutal`, aksen Electric Neon Blue dan Neon Purple.
-  - Implementasi 3D Wireframe Mesh Distort Sphere ditenagai oleh `@react-three/fiber` dan Three.js (`CyberScene.tsx`) lengkap dengan mobile fallback hemat daya.
-  - Custom cursor interaktif, scroll reading progress bar, dan transisi halaman halus via Framer Motion.
-- **Halaman & Arsitektur Konten**:
-  - Landing page utama komprehensif (`/`), Tentang Studio (`/about`), Tim (`/team`), Layanan (`/services`), Harga & Kalkulator (`/pricing`), Portofolio (`/portfolio` & rute dinamis `/portfolio/[slug]`), Blog (`/blog` & rute dinamis `/blog/[slug]`), dan Kontak (`/contact`).
-- **Database & Integrasi API**:
-  - Konfigurasi Prisma ORM dengan datasource PostgreSQL untuk model `Contact`, `Newsletter`, `Project`, dan `BlogPost`.
-  - Pembuatan API Route Handlers untuk form kontak (`/api/contact`), pendaftaran newsletter (`/api/newsletter`), dan pengunduhan profil PDF (`/api/download-profile`).
-- **SEO & Structured Data**:
-  - Otomatisasi JSON-LD Schema.org (`OrganizationSchema` & `WebSiteSchema`).
-  - Dynamic `sitemap.ts`, `robots.ts`, dan `opengraph-image.tsx`.
-- **Ekosistem AI Agent**:
-  - Pembuatan direktori `.agents/` lengkap dengan Architecture, Design, PRD, Rules, Security, Task Instruction, Testing, Deployment, Brain Knowledge, dan 5 Workspace Skills.
-  - Pembuatan `MEMORY.md` di root sebagai jangkar memori jangka panjang.
-
-### Version 1.1.0 (Ekspansi AI Agent Hub & Autonomous Governance)
-- **Lifecycle Hooks & Automation**:
-  - Implementasi `.agents/hooks.json` dengan event `PreToolUse` untuk proteksi eksekusi perintah berbahaya.
-  - Skrip pengaman `.agents/scripts/safety-guard.js` untuk memblokir force-push destruktif dan manipulasi port ilegal.
-- **Ekspansi Workspace Skills (Total 10 Skills)**:
-  - Penambahan `audira-seo-audit`, `audira-component-creator`, `audira-leads-inspector`, `audira-performance-benchmark`, dan `audira-company-profile-manager`.
-- **Ekspansi Contextual Rules (Total 7 Rules)**:
-  - Penambahan `seo_and_metadata_standards.md`, `api_security_and_ratelimit.md`, dan `git_and_workspace_hygiene.md`.
-- **Ekspansi Long-Term Memory Brain (Total 10 Knowledge Modules)**:
-  - Penambahan `ANALYTICS_AND_CONVERSION.md` dan `ENV_AND_SECRETS_REFERENCE.md`.
-- **Admin CMS & Command Terminal (`/admin`)**:
-  - Implementasi halaman dashboard `/admin` dengan autentikasi berbasis cookie `httpOnly`.
-  - Lead Status Pipeline (Mini CRM): Label status dinamis (`NEW`, `IN_DISCUSSION`, `PROPOSAL_SENT`, `DEAL_WON`, `ARCHIVED`) via `PATCH /api/admin/data`.
-  - 1-Click direct follow-up: WhatsApp auto-template & email proposal response.
-  - Manajemen lead kontak masuk (inquiries), viewer subscriber newsletter, export CSV/TXT.
-  - Ringkasan proyek portofolio, artikel blog, dan diagnostik kesehatan server/port.
-  - Proteksi privasi via exclusion `app/robots.ts`.
-- **High-Converting Homepage Overhaul (`/`)**:
-  - Live studio availability ticker (slot sprint Q4 2026, 24h SLA).
-  - Brutal Trust Bar: 4 jaminan rekayasa software (Core Web Vitals, Security, Code Ownership, Batam FTZ).
-  - Selected Works Spotlight: Showcase 3 studi kasus riil langsung di beranda.
-  - Objection-Buster FAQ Accordion: Penanganan keraguan klien secara interaktif.
+### Version 2.0.0 (Status Saat Ini — Production Ready & Theme Harmonized)
+- **Universal Theme Token Harmonization & Light Mode Optimization**:
+  - Eliminasi total hardcoded dark classes (`bg-slate-950`, `bg-slate-900`, `bg-[#0B0F19]`) pada rute internal `/invoice/[id]` dan rute publik `/invoice/public/[id]`.
+  - Standardisasi CSS semantic tokens: `--app-bg`, `--app-card`, `--app-card-subtle`, `--app-border`, `--app-text`, `--app-text-muted`.
+  - Pendaftaran rute publik invoice sebagai `isStandalone` di `apps/frontend/src/pages/_app.tsx` untuk menghilangkan sidebar admin saat link diakses pelanggan.
+  - Penambahan utilitas JIT `'card-subtle': 'var(--app-card-subtle)'` pada `tailwind.config.js`.
+- **Audit Kode & Resilience Guard**:
+  - Penambahan default state dan fallback non-blocking pada `src/pages/backup.tsx`.
+  - Penyelesaian halaman `terms.tsx` dan `privacy.tsx` untuk menjamin zero 404 links.
+  - TypeScript strict definitions check (`npx tsc --noEmit`) dengan **0 compile errors**.
+- **Isolasi Android Emulator AVD `ISP`**:
+  - Penegakan aturan isolasi multi-proyek workstation host via [start_app.bat](file:///f:/AUDIRA-NET-BILLING/start_app.bat) dan [star_app.bat](file:///f:/AUDIRA-NET-BILLING/star_app.bat). Melewatkan emulator `MDA` (Comic Reader) dan `DC` (Data Center OS) secara otomatis.
+- **Konsolidasi Memori Jangka Panjang (LTM Hub)**:
+  - Pembuatan [MEMORY.md](file:///f:/AUDIRA-NET-BILLING/MEMORY.md) di root proyek sebagai SSOT Tingkat 1.
+  - Pembersihan total seluruh artefak peninggalan proyek luar di `.agents/brain/`.
 
 ### Version 1.2.0 (Customer Telemetry, Dynamic Billing & Instant CoA Restore)
 - **Fase 1: Customer Beranda & Real-Time Telemetry**:
@@ -64,23 +38,37 @@
   - Multi-Rail Real-Time Checkout di `PaymentPage` (QRIS Dinamis 15m polling, BCA/Mandiri/BNI Virtual Account, E-Wallet GoPay/OVO/DANA).
   - E-Receipt & Thermal Print Studio: Kwitansi resmi PDF bertanda tangan digital Agus Dwi Rianto dan tombol direct WhatsApp receipt sharing.
 
+### Version 1.1.0 (Network Automation & WhatsApp Gateway)
+- **MikroTik RouterOS API Engine**:
+  - Otomatisasi pembuatan PPP Secret, IP Binding, Simple Queue, dan walled-garden isolate profile.
+- **Integrasi TR-069 GenieACS**:
+  - Pembacaan metrik redaman optik modem ONT pelanggan (RX/TX Power dBm) dan konfigurasi remote SSID/Password WiFi.
+- **WhatsApp Fonnte Engine**:
+  - Pengiriman pesan pengingat tagihan otomatis (H-3, Hari H, dan H+2 isolir) serta kwitansi pembayaran lunas.
+- **Infrastruktur GIS Map**:
+  - Pemetaan koordinat ODC, ODP, dan pelanggan di peta Leaflet/MapLibre.
+
+### Version 1.0.0 (Foundation & Monorepo Initial Setup)
+- **Backend & Database**:
+  - Inisialisasi NestJS 10 REST API dan PostgreSQL 15 via Docker Compose (Port 5455).
+  - Skema Prisma ORM komprehensif (User, Customer, Package, Invoice, Transaction).
+- **Web Admin Portal**:
+  - Inisialisasi Next.js 14 Pages router (Port 3217) dengan Sidebar, Auth, dan Dashboard Billing.
+- **Mobile Native**:
+  - Inisialisasi Flutter Android client untuk operasional lapangan.
+
 ---
 
 ## 2. Roadmap Pengembangan Masa Depan (Future Roadmap)
 
-### Tahap 2: Interactive Playground & Richer Case Studies (Q4 2026)
-- [x] Penambahan interactive 3D WebGL demo playground di halaman portofolio (`CyberPlayground3D.tsx`).
-- [ ] Penambahan live demo preview iframe atau modal interaktif untuk setiap proyek showcase.
-- [ ] Integrasi automated client email response via Resend / Nodemailer saat form kontak dikirimkan.
+### Tahap 1: Multi-NAS MikroTik Centralized Balancing (Q1 2027)
+- [ ] Dukungan manajemen klaster multi-router MikroTik (Core, Distribution, BRAS/BNG) terpusat.
+- [ ] Sinkronisasi otomatis database pelanggan ke router target sesuai area ODP pelanggan.
 
-### Tahap 3: Admin CMS & Dynamic Content Management (Q1 2027)
-- [x] Pembuatan dashboard admin aman dengan autentikasi untuk mengelola postingan blog dan melihat data prospek kontak masuk secara visual (`/admin`).
-- [ ] Integrasi automated client email response via Resend / Nodemailer saat form kontak dikirimkan.
+### Tahap 2: Automated WhatsApp Optical Telemetry Bot (Q1 2027)
+- [ ] Bot interaktif WhatsApp: Pelanggan dapat mengetik `!cek sinyal` untuk mengecek redaman optik modem ONT secara mandiri.
+- [ ] Auto-reboot modem dari WhatsApp jika terjadi penurunan throughput.
 
-### Tahap 4: Client Conversion & Commercial Engineering Expansion (Q4 2026 - Q1 2027 - APPROVED)
-- [ ] **Instant Discovery Call Booking Modal**: Integrasi modal jadwal video call (Cal.com / Google Meet) dengan zona waktu WIB/SGT/UTC terdeteksi otomatis.
-- [ ] **Multi-Currency Engine (USD / IDR / SGD)**: Switcher kurs interaktif di `/pricing` dan `ProjectEstimator.tsx` dengan integrasi panduan metode pembayaran lokal & internasional.
-- [ ] **Instant Quotation to PDF Generator**: Generator file PDF penawaran resmi ber-kop AUDIRA DEV yang dapat langsung diunduh dari kalkulator estimasi.
-- [ ] **Emergency DC Remote Hands Dispatch Flow**: Hotline & sistem pemanggilan teknisi darurat (< 2 jam SLA) khusus fasilitas Data Center Batam.
-- [ ] **Monthly Retainer & Dev-as-a-Service Packages**: Penambahan paket pemeliharaan berkala, standby engineer, dan DevOps SLA bulanan di halaman pricing.
-- [ ] **Interactive Client Workspace & Delivery Portal Showcase**: Preview alur pengerjaan transparan bagi calon klien (sprint tracker, staging preview, zero-friction delivery).
+### Tahap 3: Mobile Native Flutter Advanced Field Ops (Q2 2027)
+- [ ] Offline-first sync untuk teknisi di area blank-spot menggunakan SQLite lokal dan sinkronisasi otomatis saat terhubung sinyal.
+- [ ] Integrasi Optical Time Domain Reflectometer (OTDR) trace visualizer pada peta jalur kabel fiber.

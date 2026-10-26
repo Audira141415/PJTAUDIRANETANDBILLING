@@ -1,59 +1,115 @@
-# FEATURE CATALOG — AUDIRA DEV
-> **Master Catalog of Pages, Components, UI Widgets, and API Endpoints**  
-> *Single Source of Truth untuk Seluruh Modul Fitur (Anti-Redundansi).*
+# FEATURE CATALOG — AUDIRA-NET & BILLING ECOSYSTEM
+
+> **Master Catalog of Backend Modules, Frontend Web Admin Pages, Customer Portal, and Flutter Mobile Screens**  
+> *Single Source of Truth (SSOT) untuk Seluruh Modul Fitur & Endpoint (Anti-Redundansi).*  
+> **Author & Maintainer:** Agus Dwi Rianto (AUDIRA)  
 
 ---
 
-## 1. Katalog Halaman Publik (App Router Pages)
+## 1. Master Katalog Backend NestJS REST API (Port 3218)
 
-| ID Fitur | Rute Path | Deskripsi & Komponen Kunci | Status |
-| :--- | :--- | :--- | :--- |
-| **PAGE-01** | `/` | **Landing Page Utama**: Hero dengan Three.js 3D Sphere, What We Build (Services Grid), How We Work (5 Langkah), Featured Work, Testimoni, CTA. | ✅ Aktif |
-| **PAGE-02** | `/services` | **Halaman Layanan**: Detail Web Dev, AI Integration, UI/UX Design, Cloud/DevOps, Tech Stack Badges, FAQ interaktif. | ✅ Aktif |
-| **PAGE-03** | `/portfolio` | **Katalog Portofolio**: Filter kategori (All, Web App, AI, Design), grid studi kasus, preview thumbnail gambar dan metrik hasil. | ✅ Aktif |
-| **PAGE-04** | `/portfolio/[slug]` | **Detail Studi Kasus**: Halaman rute dinamis dengan The Challenge, The Solution, Stack Teknologi, dan Impact Results. | ✅ Aktif |
-| **PAGE-05** | `/pricing` | **Transparansi Harga**: Paket Starter, Growth, Enterprise, perbandingan fitur tabel, dan kalkulator estimasi biaya interaktif. | ✅ Aktif |
-| **PAGE-06** | `/blog` | **Repositori Artikel**: Daftar postingan teknis, pencarian kategori, estimasi waktu baca, dan tanggal rilis. | ✅ Aktif |
-| **PAGE-07** | `/blog/[slug]` | **Baca Artikel Blog**: Render artikel lengkap, tipografi nyaman, share buttons, dan rekomendasi artikel terkait. | ✅ Aktif |
-| **PAGE-08** | `/about` | **Profil Studio & Visi**: Cerita perjalanan Audira Dev dari Batam, nilai-nilai studio, dan standar kualitas pengerjaan. | ✅ Aktif |
-| **PAGE-09** | `/team` | **Profil Tim**: Tim engineer, desainer, dan spesialis AI di balik Audira Dev. | ✅ Aktif |
-| **PAGE-10** | `/contact` | **Hubungi Kami**: Formulir pesan langsung, alamat studio Batam, peta lokasi, hotline WhatsApp, dan email resmi. | ✅ Aktif |
-| **PAGE-11** | `/admin` | **Admin Command Terminal**: Dashboard autentikasi administrator untuk melihat pesan leads masuk, subscriber newsletter, ringkasan proyek & blog, diagnostik server, dan ekspor CSV/TXT. | ✅ Aktif |
+Backend NestJS 10 di `apps/backend` memiliki arsitektur modular enterprise dengan 50 modul inti:
 
----
-
-## 2. Katalog Komponen & Widget Interaktif
-
-| ID Widget | Komponen | Deskripsi & Fungsionalitas | Status |
-| :--- | :--- | :--- | :--- |
-| **WIDGET-01**| `CyberScene.tsx` | Kanvas 3D WebGL Three.js dengan bola kawat distorsi dan grid siber. Memiliki fallback CSS glow otomatis untuk layar ponsel. | ✅ Aktif |
-| **WIDGET-02**| `Navbar.tsx` | Header navigasi lengket (*sticky*) dengan efek glassmorphism, menu drawer mobile responsif, dan link aktif. | ✅ Aktif |
-| **WIDGET-03**| `ThemeToggle.tsx` | Switcher mode terang dan gelap dengan icon matahari/bulan dan penyimpanan preferensi di localStorage. | ✅ Aktif |
-| **WIDGET-04**| `CustomCursor.tsx` | Kursor magnetik visual desktop dengan animasi trailing halus. | ✅ Aktif |
-| **WIDGET-05**| `ScrollProgress.tsx`| Garis progress bar di bagian atas layar yang membaca persentase scroll halaman. | ✅ Aktif |
-| **WIDGET-06**| `WhatsAppWidget.tsx`| Tombol floating di pojok kanan bawah yang langsung membuka percakapan WhatsApp resmi (`+62 82112001600`). | ✅ Aktif |
-| **WIDGET-07**| `NewsletterForm.tsx`| Formulir langganan newsletter dengan AJAX fetch ke `/api/newsletter` dan status feedback visual. | ✅ Aktif |
-| **WIDGET-08**| `BackToTop.tsx` | Tombol halus untuk scroll kembali ke puncak halaman saat pengguna telah men-scroll jauh ke bawah. | ✅ Aktif |
-| **WIDGET-09**| `AdminDashboardClient.tsx` | Antarmuka interaktif Admin Console bergaya Neo-Brutalism + Cyberpunk dengan tab Inquiries, Subscribers, Showcase, dan System Monitor. | ✅ Aktif |
-| **WIDGET-10**| `CyberTerminal.tsx` | Interactive System Shell HUD & Hotkey (`Ctrl+K` / `` ` ``) dengan instruksi CLI (`help`, `about`, `founder`, `stack`, `quote`, `matrix`, `contact`), audio synthesizer Web Audio API, dan CRT styling. | ✅ Aktif |
-| **WIDGET-11**| `TechComparisonLab.tsx` | Simulator ROI & Speed Benchmark interaktif (Legacy WordPress vs Next.js 16) dengan slider traffic bulanan, nilai AOV, dan estimasi omzet terselamatkan. | ✅ Aktif |
-| **WIDGET-12**| `DeviceSimulatorModal.tsx` | Modal simulator responsif multi-device di halaman Portofolio untuk menguji proyek di layar Desktop, Tablet, dan Mobile dengan metrik performa real-time. | ✅ Aktif |
-| **WIDGET-13**| `DiscoveryCallModal.tsx` | Modal booking jadwal video call instan (Cal.com / Google Meet) dengan deteksi otomatis zona waktu klien. | ✅ Aktif |
-| **WIDGET-14**| `CurrencySwitcher.tsx` | Komponen seleksi mata uang (USD/IDR/SGD) dengan konversi harga instan di halaman Pricing & Estimator. | ✅ Aktif |
-| **WIDGET-15**| `QuotePdfExportButton.tsx`| Generator & downloader file PDF estimasi proyek ber-kop formal AUDIRA DEV. | ✅ Aktif |
-| **WIDGET-16**| `EmergencyDispatchModal.tsx`| Modal dispatch darurat Data Center Batam dengan form urgensi & garansi waktu respons SLA < 2 jam. | ✅ Aktif |
-| **WIDGET-17**| `ClientPortalPreview.tsx` | Showcase interaktif alur kerja transparan & demo workspace klien (roadmap, staging preview, checklist). | ✅ Aktif |
+| ID Modul | Nama Modul | Tanggung Jawab & Cakupan Fungsionalitas |
+| :--- | :--- | :--- |
+| **MOD-01** | `AuthModule` | Login, Registrasi, Refresh Token, JWT Guards, RBAC Roles (`ADMIN`, `BILLING`, `CS`, `NOC`, `TECH`). |
+| **MOD-02** | `PelangganModule` | Manajemen siklus hidup pelanggan (Registrasi, Aktivasi, Pending, Suspend, Expired, Import Excel). |
+| **MOD-03** | `CustomerModule` | Endpoint self-service pelanggan, riwayat invoice, telemetry profil, FUP usage. |
+| **MOD-04** | `BillingModule` | Mesin penagihan otomatis, prorata instalasi, perhitungan denda, siklus jatuh tempo. |
+| **MOD-05** | `InvoiceModule` | CRUD invoice, batch generate, batch send WA, credit note, refund, tax, public shareable link. |
+| **MOD-06** | `PaymentModule` | Gateway pembayaran Midtrans (QRIS, VA BCA/Mandiri/BNI), konfirmasi manual, webhook callback. |
+| **MOD-07** | `MikrotikModule` | RouterOS API client, sinkronisasi PPPoE Secrets, hotspot users, isolated profile walled-garden. |
+| **MOD-08** | `RadiusModule` | FreeRADIUS server integration, CoA Disconnect Request (UDP 3799), session accounting. |
+| **MOD-09** | `GenieacsModule` | TR-069 Auto Configuration Server client, monitoring redaman optik (RX/TX dBm), konfigurasi WiFi ONT. |
+| **MOD-10** | `OltModule` & `OdpModule` | Manajemen OLT (EPON/GPON), visualisasi splitter ODP, monitoring utilisasi port fiber optic. |
+| **MOD-11** | `FieldServiceModule` | Penugasan teknisi lapangan, instalasi baru (PSB), integrasi GPS, bukti pasang digital. |
+| **MOD-12** | `TicketModule` | Ticketing gangguan jaringan pelanggan (Open, In Progress, Resolved, Closed), SLA tracking. |
+| **MOD-13** | `WhatsAppModule` | Gateway notifikasi WhatsApp Fonnte API, template tagihan dinamis, broadcast pengumuman. |
+| **MOD-14** | `ReferralModule` & `SalesModule` | Program kemitraan sales, kode referral, kalkulasi komisi PSB otomatis, penarikan saldo dompet (payout). |
+| **MOD-15** | `EmployeeModule` & `SalaryModule` | HRM staf ISP, absensi GPS & selfie, penggajian, insentif teknisi PSB. |
+| **MOD-16** | `KeuanganModule` | Akuntansi komprehensif, bagan akun (COA), jurnal umum, buku besar, neraca, laba rugi, arus kas. |
+| **MOD-17** | `ReportsModule` & `AnalyticsModule` | Laporan eksekutif, pendapatan MRR, retensi pelanggan, analitik churn, ekspor PDF/Excel. |
+| **MOD-18** | `BoosterModule` | Layanan speed on demand / turbo booster temporer untuk pelanggan FUP. |
+| **MOD-19** | `CollectorModule` | Manajemen penagihan lapangan (kolektor door-to-door), shift kerja, setoran tunai. |
+| **MOD-20** | `InventoryModule` | Manajemen stok ONT modem, kabel dropcore, patchcord, ODP splitter, log mutasi barang. |
 
 ---
 
-## 3. Katalog API Route Handlers
+## 2. Master Katalog Frontend Web Admin (Next.js 14 - Port 3217)
 
-| ID Endpoint | Path | Metode | Fungsi & Handler | Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **API-01** | `/api/contact` | `POST` | Menerima pesan formulir kontak dan menyimpannya ke tabel `Contact` database PostgreSQL via Prisma. | ✅ Aktif |
-| **API-02** | `/api/newsletter`| `POST` | Menerima pendaftaran email newsletter dan menyimpannya ke tabel `Newsletter` Prisma. | ✅ Aktif |
-| **API-03** | `/api/download-profile`| `GET` | Menyajikan unduhan file Company Profile PDF resmi Audira Dev. | ✅ Aktif |
-| **API-04** | `/api/admin/auth`| `POST`, `GET`, `DELETE` | Endpoint autentikasi admin via HttpOnly session cookies dan verifikasi password. | ✅ Aktif |
-| **API-05** | `/api/admin/data`| `GET`, `DELETE` | Endpoint terlindungi untuk membaca/menghapus leads kontak dan subscriber, serta statistik portofolio & blog. | ✅ Aktif |
-| **API-06** | `/api/emergency-dispatch`| `POST` | Endpoint prioritas tinggi untuk menangani panggilan teknisi darurat Data Center Batam. | ✅ Aktif |
+Frontend Next.js Pages router di `apps/frontend` mencakup 80+ halaman terstruktur:
 
+### 2.1 Dashboard & Operasional
+- `/` atau `/dashboard/billing`: Dashboard utama metrik ISP (MRR, Total Pelanggan Aktif, Tagihan Menunggu, Tiket Gangguan).
+- `/dashboard/noc`: Dashboard Network Operations Center (Status Router MikroTik, Traffic Uplink, OLT Ping).
+- `/noc`: Command Center monitoring perangkat jaringan, log insiden, dan status interface.
+
+### 2.2 Manajemen Pelanggan (`/pelanggan`)
+- `/pelanggan`: Daftar seluruh pelanggan ISP, filter status (`active`, `isolated`, `pending`, `expired`), pencarian cepat.
+- `/pelanggan/[id]`: Detail komprehensif profil pelanggan, riwayat invoice, statistik redaman modem, konfigurasi PPPoE.
+- `/pelanggan/tambah`: Formulir registrasi pelanggan baru, pemilihan paket, penugasan ODP dan teknisi.
+- `/pelanggan/pending`: Antrean calon pelanggan yang menunggu instalasi fisik.
+- `/pelanggan/suspend`: Daftar pelanggan terisolir karena melewati batas jatuh tempo.
+- `/pelanggan/import`: Wizard impor data pelanggan massal dari file Excel / CSV.
+
+### 2.3 Modul Tagihan & Invoice (`/invoice`)
+- `/invoice/semua`: Master tabel seluruh invoice (Unpaid, Paid, Overdue, Cancelled).
+- `/invoice/[id]`: Rincian invoice internal, breakdown SLA, catatan pembayaran, instruksi transfer BCA/Mandiri/QRIS.
+- `/invoice/public/[id]`: Rute publik tanpa sidebar untuk dibagikan ke pelanggan via WhatsApp / SMS.
+- `/invoice/generate`: Pembuatan invoice manual perorangan dengan opsi diskon/penyesuaian.
+- `/invoice/batch-generate`: Generator invoice massal awal bulan berbasis paket aktif pelanggan.
+- `/invoice/batch-send`: Pengiriman notifikasi tagihan massal via WhatsApp Gateway Fonnte.
+- `/invoice/due`: Daftar tagihan mendekati jatuh tempo untuk penjadwalan reminder.
+- `/invoice/overdue`: Daftar tagihan menunggak untuk eksekusi isolir massal.
+- `/invoice/credit-note` & `/invoice/refund`: Manajemen nota kredit dan pengembalian dana pembayaran.
+
+### 2.4 Infrastruktur & Jaringan (`/infrastruktur` & `/mikrotik`)
+- `/mikrotik`: Manajemen router MikroTik terhubung, sinkronisasi secret PPPoE, live queue bandwidth monitor.
+- `/infrastruktur/map`: Peta GIS interaktif persebaran jalur kabel fiber optic, ODC, ODP, dan sebaran pelanggan.
+- `/infrastruktur/odp`: Visualisasi detail hardware splitter ODP (kapasitas 1:8 / 1:16, port terpakai, redaman dBm).
+- `/infrastruktur/olt`: Monitoring OLT EPON/GPON, temperatur chassis, uptime, dan daftar ONU/ONT terdaftar.
+- `/hotspot`: Manajemen voucher hotspot WiFi, profil bandwidth, dan cetak massal kupon voucher.
+- `/booster`: Pengaturan turbo booster bandwidth on-demand bagi pelanggan.
+
+### 2.5 Keuangan & Akuntansi (`/finance`)
+- `/finance/dashboard`: Ringkasan keuangan ISP (Penerimaan Kas, Beban Operasional, Margin Laba Bersih).
+- `/finance/akun`: Bagan Akun (Chart of Accounts / COA) aset, kewajiban, ekuitas, pendapatan, dan beban.
+- `/finance/transaksi`: Jurnal transaksi harian masuk dan keluar kas/bank.
+- `/finance/laba-rugi`: Laporan Laba Rugi periodik (Gross Profit & Net Income).
+- `/finance/neraca`: Laporan Neraca Keuangan (Balance Sheet).
+- `/finance/arus-kas`: Laporan Arus Kas metode langsung (Operasional, Investasi, Pendanaan).
+- `/finance/anggaran`: Manajemen plafon anggaran operasional bulanan per divisi.
+- `/finance/rekonsiliasi`: Rekonsiliasi mutasi rekening bank dengan transaksi tagihan.
+- `/finance/pajak`: Pelaporan PPN 11% tagihan internet dan PPh 21/23.
+
+### 2.6 Kemitraan Sales & Referral (`/admin/sales` & `/sales/daftar`)
+- `/admin/sales`: Dashboard kemitraan sales partner, verifikasi pendaftaran calon mitra, persetujuan penarikan komisi (payout), dan buku besar mutasi dompet mitra.
+- `/sales/daftar`: Formulir pendaftaran mitra reseller / sales referral AUDIRA-NET.
+
+### 2.7 Layanan Lapangan & WhatsApp
+- `/technician` & `/technician-monitoring`: Pelacakan lokasi teknisi, antrean tugas instalasi & perbaikan.
+- `/tickets` & `/work-order-detail`: Pengelolaan trouble ticket pelanggan dan Surat Perintah Kerja (SPK).
+- `/whatsapp`: Dashboard WhatsApp Gateway Fonnte, monitoring status koneksi nomor gateway, scheduler pengingat otomatis.
+
+---
+
+## 3. Customer Self-Service Portal (Next.js 14 - Port 3001)
+
+Portal mandiri pelanggan di `apps/customer-portal`:
+- `/customer/login`: Login pelanggan menggunakan Nomor Internet / WhatsApp & Password.
+- `/customer/dashboard`: Beranda pelanggan, status koneksi internet, masa aktif paket, dan pintasan bayar.
+- `/customer/invoices`: Riwayat seluruh tagihan, download kwitansi digital PDF.
+- `/customer/profile`: Informasi pelanggan, ganti sandi WiFi / router, dan alamat pemasangan.
+- `/customer/tickets`: Pengaduan gangguan internet langsung ke NOC 24/7.
+
+---
+
+## 4. Mobile Native App (Flutter `AUDIRA-NET` - AVD `ISP`)
+
+Aplikasi Android mobile untuk operasional lapangan:
+- **Auth & Role Gate**: Login terpadu teknisi, sales, NOC, dan pelanggan (`unified_login_page.dart`).
+- **Dashboard Teknisi**: Monitoring tiket perbaikan harian, SPK instalasi baru (`teknisi_home.dart`).
+- **Barcode & QR Scanner**: Scan barcode serial number ONT/modem saat pemasangan di rumah pelanggan (`barcode_scanner_page.dart`).
+- **Optical Diagnostic Sheet**: Pengecekan kualitas sinyal redaman kabel fiber optik langsung dari modem ONT (`optical_diagnostics_sheet.dart`).
+- **Proof of Work Digital**: Pengambilan foto bukti instalasi, tanda tangan pelanggan, dan geotag GPS (`digital_proof_of_work_dialog.dart`).
+- **Customer Self-Care Tab**: Pembayaran tagihan QRIS instan, uji kecepatan internet (*Speed Test*), dan monitoring FUP usage.

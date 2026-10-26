@@ -1,71 +1,52 @@
-# ANALYTICS & CONVERSION STRATEGY — AUDIRA DEV
-> **Knowledge Module ID**: `BRAIN-ANALYTICS-01`  
-> **Status**: ACTIVE & ROADMAP  
-> **Scope**: Tracking Konversi, Event Funnel, CTA WhatsApp, Profil Downloads, & Lead Form Metrics.
+# ANALYTICS & OPERATIONAL TELEMETRY — AUDIRA-NET & BILLING
+
+> **Master Guide for ISP Operational Metrics, Telemetry KPIs, Financial Health, and SLA Performance**  
+> *Standar Evaluasi Kinerja Bisnis ISP, Kesehatan Sinyal Optik, dan Efektivitas Penagihan.*  
+> **Author & Maintainer:** Agus Dwi Rianto (AUDIRA)  
 
 ---
 
-## 1. Filosofi Konversi AUDIRA DEV
+## 1. Indikator Kinerja Finansial & Bisnis ISP (Business KPIs)
 
-Sebagai platform digital studio & agensi teknologi, setiap halaman di AUDIRA DEV memiliki satu tujuan utama: **mengonversi pengunjung menjadi klien prospektif (qualified leads)**.
+Dashboard Utama (`/` atau `/dashboard/billing`) memantau metrik finansial secara real-time:
 
-### Funnel Konversi Utama:
-```text
-┌────────────────┐     ┌────────────────┐     ┌────────────────┐
-│  Visitor Land   │ ──> │ Explore Proof  │ ──> │ Conversion Act │
-│  Hero / 3D Canvas│     │ Case Studies / │     │ WhatsApp / Form│
-│  Tagline Visual│     │ Pricing Matrix │     │ Proposal DL    │
-└────────────────┘     └────────────────┘     └────────────────┘
-```
-
----
-
-## 2. Poin-Poin Konversi Kunci (Conversion Touchpoints)
-
-1. **Primary WhatsApp CTA**:
-   * Link: `https://wa.me/6282112001600`
-   * Penempatan: Header navbar, Hero section ("Konsultasi Sekarang"), Sticky mobile footer, dan Pricing cards ("Pilih Paket").
-2. **Contact Form Leads**:
-   * Route: `/contact` -> `POST /api/contact` -> Database model `Contact`.
-   * Metrik: Jumlah formulir inquiry proyek yang berhasil terkirim.
-3. **Company Profile & Media Kit Download**:
-   * Endpoint: `GET /api/download-profile` -> File text/PDF profil resmi.
-   * Metrik: Frekuensi unduhan oleh calon investor atau mitra korporat.
-4. **Newsletter Subscriptions**:
-   * Route: Footer widget -> `POST /api/newsletter` -> Database model `Newsletter`.
-   * Metrik: Pertumbuhan daftar email developer & calon klien.
-5. **Instant Discovery Call Bookings**:
-   * Modal: `DiscoveryCallModal.tsx` -> Integrasi Cal.com / Google Meet.
-   * Metrik: Jumlah slot jadwal konsultasi arsitektur 15 menit yang dipesan klien.
-6. **Instant Project Quote PDF Exports**:
-   * Komponen: `QuotePdfExportButton.tsx` di `ProjectEstimator.tsx`.
-   * Metrik: Jumlah dokumen penawaran estimasi formal yang diunduh untuk approval internal.
-7. **Emergency Batam DC Remote Hands Dispatches**:
-   * Modal / Endpoint: `EmergencyDispatchModal.tsx` -> `POST /api/emergency-dispatch`.
-   * Metrik: Permintaan intervensi on-site darurat fasilitas data center Batam.
+| Metrik | Definisi & Formula | Target Standar | Makna Operasional |
+| :--- | :--- | :--- | :--- |
+| **MRR** (Monthly Recurring Revenue) | $\sum (\text{Harga Paket} \times \text{Pelanggan Aktif})$ | Pertumbuhan > 5% / bulan | Total pendapatan berulang bulanan dari langganan internet. |
+| **ARPU** (Average Revenue Per User) | $\frac{\text{Total MRR}}{\text{Total Pelanggan Aktif}}$ | > Rp 250.000 / user | Rata-rata belanja bulanan tiap pelanggan. |
+| **Collection Rate** (Tingkat Ketagihan)| $\frac{\text{Invoice Terbayar (Paid)}}{\text{Total Invoice Terbit}} \times 100\%$ | > 92% per tanggal 15 | Efektivitas penagihan sebelum jatuh tempo isolir. |
+| **Churn Rate** | $\frac{\text{Pelanggan Berhenti}}{\text{Total Pelanggan Awal Bulan}} \times 100\%$ | < 1.5% / bulan | Tingkat retensi dan kepuasan pelanggan terhadap layanan. |
+| **PSB Conversion** | $\frac{\text{Pemasangan Selesai}}{\text{Calon Pelanggan Mendaftar}} \times 100\%$ | > 85% | Kecepatan survei dan penarikan kabel dropcore teknisi. |
 
 ---
 
-## 3. Rencana Integrasi Event Tracking (Roadmap Analytics)
+## 2. Telemetri Jaringan & Kualitas Sinyal Optik (Network Telemetry)
 
-Untuk pemantauan metrik tanpa memperlambat First Contentful Paint:
-* **Privacy-Friendly Web Analytics**: Mempersiapkan integrasi Umami Analytics atau Cloudflare Web Analytics (bebas cookie agresif).
-* **Custom Event Dispatcher**:
-  ```typescript
-  // Helper dispatch event konversi aman
-  export function trackConversion(eventName: string, metadata?: Record<string, any>) {
-    if (typeof window !== "undefined" && (window as any).umami) {
-      (window as any).umami.track(eventName, metadata);
-    }
-  }
-  ```
-* **Event Naming Convention**:
-  * `cta_whatsapp_click` (dengan properti `location: 'hero' | 'pricing' | 'nav'`)
-  * `contact_form_submitted` (dengan status `success | failed`)
-  * `company_profile_downloaded`
-  * `case_study_viewed` (dengan properti `slug: project.slug`)
-  * `discovery_call_booked` (dengan properti `timezone: string, channel: 'google_meet' | 'cal'`)
-  * `quote_pdf_exported` (dengan properti `total_usd: number, project_type: string`)
-  * `emergency_dispatch_requested` (dengan properti `datacenter_location: string, urgency: string`)
-  * `currency_switched` (dengan properti `to_currency: 'USD' | 'IDR' | 'SGD'`)
+Modul NOC dan integrasi TR-069 GenieACS memantau parameter fisik jaringan:
 
+| Parameter Fisik | Rentang Normal / Optimal | Ambang Batas Waspada (Warning) | Tindakan Operasional |
+| :--- | :--- | :--- | :--- |
+| **Optical RX Power (ONT)** | `-15.0 dBm` s/d `-24.0 dBm` | `> -27.0 dBm` (Redaman Tinggi) | Alarm otomatis ke NOC, terbitkan tiket inspeksi kabel/splicing ODP. |
+| **Optical TX Power (ONT)** | `+1.5 dBm` s/d `+5.0 dBm` | `< +1.0 dBm` (Laser Lemah) | Jadwalkan penggantian unit ONT modem. |
+| **Ping Latency (Gateway)**| `< 15 ms` (Koneksi Lokal) | `> 40 ms` (Jitter / Latency Spike) | Periksa bottleneck bandwidth interface MikroTik atau link OLT. |
+| **Packet Loss** | `0.0%` | `> 1.0%` | Investigasi kabel optik bengkok (*microbending*) atau konektor kotor. |
+| **OLT Uplink Load** | `< 75%` Kapasitas Port | `> 85%` Utilisasi Puncak | Rencanakan upgrade bandwidth backbone (*LACP / 10G link*). |
+
+---
+
+## 3. Metrik SLA Layanan Lapangan & Tiket (Field Service SLA)
+
+| Metrik SLA | Standar Target | Penanggung Jawab |
+| :--- | :--- | :--- |
+| **Waktu Respons Tiket (Initial Response)** | < 15 Menit | Helpdesk & Customer Service (CS) |
+| **MTTR (Mean Time To Resolve Gangguan)** | < 4 Jam (Pelanggan Bisnis: < 2 Jam) | Tim Teknisi Jaringan & Splicer |
+| **Durasi Pemasangan Baru (PSB Lead Time)** | < 24 Jam sejak pembayaran registrasi | Koordinator Teknisi Lapangan |
+| **Tingkat Penyelesaian Pertama (FCR)** | > 80% tanpa kunjungan ulang teknisi | Teknisi Lapangan & NOC Support |
+
+---
+
+## 4. Efektivitas Notifikasi Otomatis WhatsApp (Gateway Metrics)
+
+- **Delivery Rate**: Persentase pesan notifikasi WhatsApp Fonnte yang berhasil terkirim ke ponsel pelanggan (Target: > 98%).
+- **Reminder to Payment Velocity**: Rata-rata jam/hari antara penerimaan pesan WA tagihan hingga invoice berstatus `PAID` (Target: < 48 jam).
+- **Auto-Reply Containment**: Jumlah pertanyaan umum (cek tagihan, nomor rekening, info isolir) yang diselesaikan oleh chatbot WhatsApp tanpa campur tangan staf CS.

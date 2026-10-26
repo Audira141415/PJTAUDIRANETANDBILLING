@@ -1,117 +1,129 @@
-# DATABASE & DATA FLOW — AUDIRA DEV
-> **Data Schemas, Entity Relationships, Prisma ORM, and Form-to-Database Flow**  
-> *Spesifikasi Alur Pengiriman Data Formulir, Model Database PostgreSQL, dan Penanganan Data.*
+# DATABASE & DATA FLOW — AUDIRA-NET & BILLING ECOSYSTEM
+
+> **PostgreSQL Schema, Prisma ORM Relations, Redis Caching, and End-to-End Business Flow**  
+> *Single Source of Truth (SSOT) Arsitektur Data, Relasi Entitas, dan Alur Transaksi ISP.*  
+> **Author & Maintainer:** Agus Dwi Rianto (AUDIRA)  
 
 ---
 
-## 1. Diagram Siklus Alur Data (Data Flow Cycle)
+## 1. Arsitektur Database & Penyimpanan
+
+- **Database Engine**: PostgreSQL 15 running in Docker Container (`sebilling-postgres`)
+- **Port Koneksi**: `5455` (Host) -> `5432` (Container)
+- **Database Name**: `sebilling`
+- **ORM**: Prisma Client v5+ (`@prisma/client`) dengan skema monorepo di `apps/backend/prisma/schema.prisma`
+- **Cache & Queue**: Redis 7 running in Docker Container (`sebilling-redis`, Port `6379`)
+
+---
+
+## 2. Entitas Inti Skema Prisma (`apps/backend/prisma/schema.prisma`)
+
+Skema Prisma terdiri dari 900+ baris kode dengan relasi terintegrasi:
+
+### 2.1 Manajemen Pengguna & Keamanan
+- `User`: Akun pengguna sistem dengan role berbasis RBAC (`ADMIN`, `BILLING`, `CS`, `NOC`, `TECH`). Memiliki relasi ke `Tenant`, `Employee`, `WorkOrder`, `Attendance`.
+- `Tenant`: Multi-tenant ISP identifier untuk isolasi data cabang/unit bisnis.
+
+### 2.2 Pelanggan & Paket Internet
+- `Customer`: Profil pelanggan lengkap, meliputi `internetNumber` (ID Pelanggan unik), `ipAddress`, `installedModem`, `modemSerial`, `status` (`active`, `isolated`, `pending`, `expired`), `promiseDate` (janji bayar), `isGracePeriod` (dispensasi isolir), relasi ke `salesPartner`, `invoices`, `tickets`, `workOrders`.
+- `Package`: Master paket langganan (nama paket, kecepatan `speed`, tarif bulanan `price`, `salesCommission` komisi mitra sales).
+- `Service`: Layanan tambahan yang aktif pada pelanggan (misal: IP Publik Statis, TV Kabel, Tambahan STB).
+- `CustomerBooster`: Paket penambah kecepatan / kuota on-demand temporer.
+
+### 2.3 Penagihan & Pembayaran (Billing Engine)
+- `Invoice`: Tagihan periodik pelanggan dengan nomor faktur unik (`INV-YYYY-MM-XXXX`), `amount`, `taxAmount` (PPN 11%), `subtotal`, `status` (`UNPAID`, `PAID`, `OVERDUE`, `CANCELLED`), tanggal terbit, dan `dueDate`.
+- `InvoiceItem`: Rincian item tagihan (SLA Jaminan, Biaya Berlangganan, Sewa ONT, PPN).
+- `Transaction`: Catatan penerimaan pembayaran kas/bank/gateway, relasi ke `Invoice` dan `Customer`.
+- `PaymentGateway`: Konfigurasi integrasi Midtrans (Server Key, Client Key, mode sandbox/production).
+
+### 2.4 Jaringan & Telemetri Perangkat
+- `Router`: Data router MikroTik terhubung (IP host, port API 8728, kredensial terenkripsi, status koneksi).
+- `MikrotikProfile`: Profil paket bandwith PPPoE / Hotspot di RouterOS.
+- `GenieAcsDevice`: Data perangkat ONT modem pelanggan yang termonitor via TR-069 ACS (Sinyal RX/TX optik, uptime, WiFi SSID).
+- `Olt` & `Odp` & `Odc`: Data topologi jaringan fiber optic, koordinat GPS GIS, dan kapasitas port splitter.
+
+### 2.5 Layanan Lapangan, Tiket & Karyawan
+- `Ticket`: Trouble ticket gangguan internet pelanggan, riwayat penanganan, waktu penyelesaian SLA.
+- `WorkOrder`: Surat Perintah Kerja (SPK) untuk teknisi lapangan (Pemasangan PSB baru, perbaikan kabel putus, migrasi paket).
+- `Employee`: Data kepegawaian staf (posisi, gaji pokok, tunjangan, tanggal bergabung).
+- `Attendance`: Catatan absensi staf teknisi/admin dengan koordinat GPS dan foto selfie.
+- `CollectorShift`: Catatan shift operasional penagih lapangan dan rekap setoran uang tagihan.
+
+### 2.6 Kemitraan Sales & Buku Besar Komisi
+- `SalesPartner`: Profil mitra sales/reseller, kode referral unik, nomor rekening bank/e-wallet, saldo dompet (`walletBalance`).
+- `SalesCommission`: Catatan komisi yang didapat mitra dari pelanggan baru yang berhasil membayar tagihan pertama.
+- `SalesWithdrawal`: Permintaan pencairan saldo dompet mitra sales ke rekening bank.
+- `SalesLedger`: Buku besar mutasi kredit/debit dompet komisi mitra sales.
+
+### 2.7 Akuntansi & Keuangan
+- `AccountingAccount`: Bagan Akun (COA) standar akuntansi ISP.
+- `AccountingJournal`: Jurnal transaksi debit dan kredit berpasangan (*double-entry bookkeeping*).
+- `AccountingLedger`: Buku besar per akun untuk penyusunan laporan keuangan otomatis.
+
+---
+
+## 3. Diagram Alur Transaksi Kunci (End-to-End Data Flows)
+
+### 3.1 Siklus Penagihan Otomatis & Pemulihan Instan ("Bayar Langsung Nyala")
 
 ```text
-[ Pengguna Mengisi Form Kontak / Newsletter ]
-                     |
-                     v
-[ Client Component (onSubmit) ]
-                     |  fetch() dengan body JSON
-                     v
-[ Next.js Route Handler (/api/contact atau /api/newsletter) ]
-                     |
-                     +---> [ Validasi Input String & Email ]
-                     |
-                     v
-[ Prisma Client Singleton (lib/prisma.ts) ]
-                     |
-                     v
-[ PostgreSQL Database (Tabel: Contact / Newsletter) ]
-                     |
-                     v
-[ Respon JSON { success: true } dikembalikan ke Klien ]
-                     |
-                     v
-[ Notifikasi Sukses / Pesan Konfirmasi Ditampilkan ke Pengguna ]
+[ 1. CRON SCHEDULER BULANAN (Tanggal 1) ]
+                  |
+                  v
+[ Backend NestJS: InvoiceService.generateMonthlyInvoices() ]
+                  |
+                  +---> Buat entri Invoice status 'UNPAID'
+                  +---> Generate nomor unik (INV-2026-XX-XXXX)
+                  |
+                  v
+[ 2. PENGIRIMAN NOTIFIKASI WHATSAPP (Fonnte API) ]
+                  |
+                  +---> Pesan WA terkirim dengan rincian total & link pembayaran publik
+                  |
+                  v
+┌─────────────────┴─────────────────┐
+│ Status: Pelanggan Membayar?       │
+└─────────────────┬─────────────────┘
+        BELUM     │     SUDAH
+        ┌─────────┴─────────┐
+        v                   v
+[ Melewati Due Date ]    [ Webhook Midtrans / Admin Confirm ]
+        |                   |
+        v                   v
+[ STATUS: OVERDUE ]      [ STATUS: PAID ]
+        |                   |
+        v                   v
+[ 3. ISOLIR OTOMATIS ]   [ 4. PULIHKAN INTERNET INSTAN ]
+- Ubah profile PPPoE     - Kembalikan profile normal di MikroTik
+  menjadi 'isolir'       - Kirim FreeRADIUS CoA Disconnect (UDP 3799)
+- Putus sesi aktif         untuk reset sesi pelanggan seketika (<2s)
+  via RADIUS CoA         - Kirim Kwitansi Lunas via WhatsApp
+- Alihkan traffic ke     - Kreditkan komisi ke SalesPartner (jika PSB pertama)
+  halaman pembayaran     - Catat jurnal kas masuk ke Keuangan
 ```
 
----
+### 3.2 Alur Tiket Gangguan & Dispatch Lapangan
 
-## 2. Skema Model Prisma (`prisma/schema.prisma`)
-
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
-}
-
-model Contact {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  message   String
-  createdAt DateTime @default(now())
-}
-
-model Project {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  image       String?
-  category    String
-  link        String?
-  createdAt   DateTime @default(now())
-}
-
-model Newsletter {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  createdAt DateTime @default(now())
-}
-
-model BlogPost {
-  id          Int      @id @default(autoincrement())
-  slug        String   @unique
-  title       String
-  excerpt     String
-  content     String
-  category    String
-  readTime    String
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model ClientAccount {
-  id              Int      @id @default(autoincrement())
-  accessKey       String   @unique
-  contractCode    String   @unique
-  companyName     String
-  picName         String
-  email           String
-  phone           String
-  serviceType     String
-  projectBrief    String?
-  status          String   @default("ACTIVE")
-  overallProgress Int      @default(25)
-  currentPhase    String   @default("Milestone 1: Project Provisioning & Architecture Alignment")
-  stagingUrl      String?
-  githubRepo      String?
-  nextWeeklyDemo  String?  @default("Friday, 16:00 SGT (Google Meet)")
-  hoursUsed       Int      @default(0)
-  hoursTotal      Int      @default(40)
-  dcVisits        Int      @default(0)
-  tier            String   @default("ENTERPRISE_WEB")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-}
+```text
+[ Pelanggan Lapor Gangguan (Customer Portal / WhatsApp) ]
+                      |
+                      v
+[ Backend: TicketService.createTicket() ] -> Notifikasi ke CS & NOC Dashboard
+                      |
+                      v
+[ Diagnostik Awal NOC: Cek Redaman Optik via GenieACS TR-069 ]
+                      |
+                      +---> Jika masalah redaman fisik kabel (RX > -27 dBm):
+                      |     Terbitkan WorkOrder penugasan teknisi
+                      v
+[ Mobile App Flutter AVD ISP: Teknisi menerima SPK di tab 'Tugas' ]
+                      |
+                      v
+[ Teknisi Datang ke Lokasi -> Scan QR ODP -> Splicing Kabel ]
+                      |
+                      v
+[ Ambil Foto Bukti Pasang (Proof of Work) + Geotag GPS + Tanda Tangan ]
+                      |
+                      v
+[ Tiket Closed -> Pelanggan menerima notifikasi penyelesaian via WhatsApp ]
 ```
-
----
-
-## 3. Data File Statis (`lib/portfolio-data.ts` & `lib/blog-data.ts`)
-
-Untuk kecepatan maksimal dan SEO tanpa dependensi query database saat proses build SSG (*Static Site Generation*):
-- Data portofolio utama disimpan langsung dalam file TypeScript di `lib/portfolio-data.ts`.
-- Data blog teknis disimpan di `lib/blog-data.ts`.
-- Model Prisma `Project` dan `BlogPost` disiapkan sebagai fondasi masa depan saat dashboard CMS admin diaktifkan.
