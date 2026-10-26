@@ -105,18 +105,19 @@ The `AUDIRA-NET-BILLING` workspace consists of two primary applications:
 ## 3. Quick Start & Execution
 
 ```powershell
-# 1. Start all Billing services (Docker, Backend, Frontend)
+# 1. Jalankan Seluruh Layanan Web Saja (Tanpa Emulator Mobile - Cepat & Ringan)
 cd f:\AUDIRA-NET-BILLING
-.\start.bat
+.\start_web.bat   # (atau alias: .\star_web.bat / .\star.bat)
 
-# 2. Run Flutter Mobile App on Android Emulator (Target AVD: ISP)
+# 2. Jalankan Aplikasi Mobile Flutter di Emulator Khusus ISP
 cd f:\AUDIRA-NET-BILLING
-.\start_app.bat   # (atau .\star_app.bat)
+.\start_app.bat   # (atau alias: .\star_app.bat)
 
-# 3. Stop all background servers
+# 3. Stop seluruh background servers
 cd f:\AUDIRA-NET-BILLING\AUDIRA-BILLING
 .\stop-servers.bat
 
 # 4. Save & sync code with Git
 .\save.bat
 ```
+
