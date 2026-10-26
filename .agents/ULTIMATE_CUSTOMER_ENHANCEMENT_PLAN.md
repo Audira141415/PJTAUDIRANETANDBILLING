@@ -268,7 +268,7 @@ Sebagai bagian dari disiplin ketat **Anti-Fantasy**, berikut adalah potensi kega
 
 | Fase | Fokus Modul | Target & Deliverables | PIC Agen |
 | :--- | :--- | :--- | :--- |
-| **Fase 1** | **Customer Beranda & Telemetri** | Sinyal redaman ONT riil, radial gauge kuota FUP, status koneksi aktif, maintenance banner proaktif. | `audira-ui-ux`<br>`agency-network-engineer` |
+| **Fase 1** | **Customer Beranda & Telemetri** | ✅ **COMPLETED**: Endpoint `/customer/telemetry` terintegrasi di NestJS; `customer_beranda_tab.dart` live strip, multi-zone FUP gauge (< 70% Safe, 70-90% Warning, > 90% Turbo), dynamic optical dBm (-19.4 dBm), and proactive maintenance banner. | `audira-ui-ux`<br>`agency-network-engineer` |
 | **Fase 2** | **Billing & Instant CoA Unblock** | UI rincian tagihan baru, QRIS dinamis real-time, webhook handler, RADIUS CoA UDP 3799 auto-restore. | `agency-payments-billing-engineer`<br>`audira-prisma-database` |
 | **Fase 3** | **Dokter Jaringan & Remote ONT** | Wizard diagnosa 4-tahap, restart modem via GenieACS, ubah nama WiFi & password 2.4/5GHz, cek perangkat terhubung. | `agency-network-engineer`<br>`audira-component-creator` |
 | **Fase 4** | **Tiket Bantuan & Live Chat NOC** | Alur tiket dengan foto bukti, SLA countdown, chat real-time via WebSocket Socket.io, bot FAQ otomatis. | `agency-customer-service`<br>`agency-realtime-collaboration-engineer` |
