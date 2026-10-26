@@ -81,10 +81,9 @@ exit /b 0
 
 :opt_mobile
 echo.
-echo [*] Meluncurkan AUDIRA-NET Mobile (Flutter)...
-cd /d "%~dp0AUDIRA-NET"
-call start-flutter-only.bat
-pause
+echo [*] Meluncurkan AUDIRA-NET Mobile di Android Emulator...
+cd /d "%~dp0"
+call start_app.bat
 exit /b 0
 
 :opt_full
