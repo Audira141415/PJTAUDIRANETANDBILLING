@@ -79,8 +79,12 @@
   - Null-safety guard pada seluruh tabel data (Invoice, Pelanggan, Transaksi, Laporan).
   - Pemasangan handler aktif pada 25+ tombol dead/statis di halaman keuangan dan laporan.
 - [x] **Universal Light Mode & Token Harmonization**:
-  - Pembersihan total class hardcoded dark (`bg-slate-950`, `bg-slate-900`) di rute Invoice internal dan public.
+  - Pembersihan total class hardcoded dark (`bg-slate-950`, `bg-slate-900`) di rute Invoice internal dan public, serta halaman `admin/sales.tsx` dan `infrastruktur/odp.tsx`.
   - Standardisasi token CSS: `--app-bg`, `--app-card`, `--app-card-subtle`, `--app-border`, `--app-text`, `--app-text-muted`.
+- [x] **Full 134-Page & Button Audit with Zero Empty State**:
+  - Audit live HTTP terhadap seluruh 134 rute di `http://localhost:3217` (100% 200 OK dengan HTML substantial >100KB, 0 crash, 0 blank page).
+  - Audit kode statis: 0 dead buttons, 0 dead anchors across all pages.
+  - Implementasi komponen [ReportSubTabDetail.tsx](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/frontend/src/components/ReportSubTabDetail.tsx) pada 12 halaman laporan (`reports/customer`, `executive`, `finance`, `invoice`, `marketing`, `package`, `payment`, `revenue`, `sales`, `subscription`, `whatsapp`, dan `whatsapp/reports`), mengeliminasi seluruh tab placeholder kosong ("sedang dalam pengembangan") menjadi dashboard analitik interaktif ber-KPI, chart tren Recharts, dan tabel data granular.
 
 ### 🔄 In-Progress / Ongoing Focus
 - [ ] **Sinkronisasi Memori Jangka Panjang (LTM Hub)**:
