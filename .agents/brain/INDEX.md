@@ -14,8 +14,9 @@
   - *Frontend*: Next.js 14 Web Admin Portal untuk manajemen pelanggan, paket, penagihan, router, dan laporan. Berjalan di **Port 3217**.
   - *Customer Portal*: Next.js 14 self-service untuk pelanggan cek tagihan & bayar QRIS. Berjalan di **Port 3001**.
 - **AUDIRA-NET (Mobile App)**:
-  - *Mobile Native (Flutter)*: Aplikasi Android (`com.example.AudiraNET_app`) untuk operasional teknisi lapangan, NOC, dan CS. Berjalan di Android Emulator `emulator-5554`.
+  - *Mobile Native (Flutter)*: Aplikasi Android (`com.example.AudiraNET_app`) untuk operasional teknisi lapangan, NOC, dan CS. Berjalan khusus di Android Emulator bernama AVD **`ISP`** (isolasi ketat dari emulator proyek lain seperti `MDA` atau `DC`).
   - *Mobile React Native (Expo SDK 50)*: Aplikasi mobile alternatif untuk pelanggan & teknisi.
+
 
 ---
 
@@ -30,3 +31,5 @@
 | **04. Database & Alur Data** | [DATABASE_AND_DATA_FLOW.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/DATABASE_AND_DATA_FLOW.md) | PostgreSQL schema, Prisma ORM relations, Redis caching, dan alur isolir/reaktivasi. |
 | **05. Variabel Lingkungan** | [ENV_AND_SECRETS_REFERENCE.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/ENV_AND_SECRETS_REFERENCE.md) | Pemetaan port (3217/3218/3001/5455/6379), kredensial DB Docker, API keys. |
 | **06. SOP Operasional** | [.agents/sop/INDEX.md](file:///f:/AUDIRA-NET-BILLING/.agents/sop/INDEX.md) | Prosedur penanganan insiden jaringan, onboarding pelanggan, dan penagihan. |
+| **07. Lingkungan Emulator** | [DEVICE_AND_EMULATOR_ENVIRONMENT.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/DEVICE_AND_EMULATOR_ENVIRONMENT.md) | Isolasi multi-proyek emulator Android (khusus AVD `ISP`, abaikan `MDA`/`DC`). |
+

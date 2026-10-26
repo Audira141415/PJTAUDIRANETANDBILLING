@@ -57,4 +57,5 @@
 - **PostgreSQL Database**: `localhost:5455` (User: `audira`, DB: `sebilling`)
 - **Redis Cache**: `localhost:6379`
 - **FreeRADIUS Server**: `localhost:1812` (Auth), `localhost:1813` (Acct)
-- **Android Emulator**: `emulator-5554` (AVD: `ISP.avd`)
+- **Android Emulator**: Khusus AVD bernama **`ISP`** (Deteksi dinamis via `adb emu avd name | findstr /V /I "^OK"`). Dilarang menyentuh emulator `MDA` atau `DC` milik proyek lain.
+

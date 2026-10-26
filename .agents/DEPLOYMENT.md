@@ -30,7 +30,7 @@ Pastikan port-port berikut tidak bentrok dengan aplikasi lain:
 | **`3001`** | Customer Self-Service | `AUDIRA-BILLING/apps/customer-portal` | `npm run dev` (`next dev -p 3001`) |
 | **`5455`** | PostgreSQL 15 | Container `sebilling-postgres` | `docker-compose up -d` |
 | **`6379`** | Redis 7 Cache | Container `sebilling-redis` | `docker-compose up -d` |
-| **`5554`** | Android Emulator | Device `emulator-5554` (AVD `ISP`) | `adb devices` |
+| **`5554-5558`** | Android Emulator | Device AVD `ISP` (Deteksi Otomatis via `emu avd name`) | `start_app.bat` |
 
 ---
 
@@ -46,7 +46,7 @@ Pastikan kontainer `sebilling-postgres` (port 5455) dan `sebilling-redis` (port 
 ### Langkah 2: Jalankan Server Web & Backend
 Cukup jalankan satu perintah:
 ```powershell
-cd f:\AUDIRA-NET-BILLING\AUDIRA-BILLING
+cd f:\AUDIRA-NET-BILLING
 .\start.bat
 ```
 Skrip ini akan otomatis:
@@ -55,12 +55,14 @@ Skrip ini akan otomatis:
 3. Membuka terminal Frontend di Port 3217.
 4. Membuka browser pada alamat `http://localhost:3217`.
 
-### Langkah 3: Jalankan Aplikasi Mobile (Flutter) di Emulator
-Pastikan emulator Android (`emulator-5554`) sudah aktif:
+### Langkah 3: Jalankan Aplikasi Mobile (Flutter) di Emulator ISP
+Cukup jalankan peluncur khusus yang otomatis mengisolasi ke AVD `ISP`:
 ```powershell
-cd f:\AUDIRA-NET-BILLING\AUDIRA-NET
-flutter run -d emulator-5554
+cd f:\AUDIRA-NET-BILLING
+.\start_app.bat
 ```
+*Catatan: Skrip akan otomatis mengabaikan emulator `MDA` dan `DC` milik proyek lain, melakukan reverse port forwarding `3218`, dan menyalakan Flutter run.*
+
 
 ---
 

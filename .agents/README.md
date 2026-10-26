@@ -98,7 +98,7 @@ The `AUDIRA-NET-BILLING` workspace consists of two primary applications:
 - **Mobile Expo (`apps/mobile/`)**: React Native (Expo SDK 50) app for technicians and customers.
 
 ### 2. `AUDIRA-NET/`
-- **Flutter Mobile App (`com.example.AudiraNET_app`)**: Android application for ISP field operations, technicians, NOC, and customer service. Integrates with Firebase, QR scanner, GPS navigation, and camera. Runs on Android Emulator (`emulator-5554` / `ISP.avd`).
+- **Flutter Mobile App (`com.example.AudiraNET_app`)**: Android application for ISP field operations, technicians, NOC, and customer service. Integrates with Firebase, QR scanner, GPS navigation, and camera. Runs exclusively on Android Emulator with AVD named **`ISP`** (skipping `MDA` & `DC` emulators).
 
 ---
 
@@ -106,12 +106,12 @@ The `AUDIRA-NET-BILLING` workspace consists of two primary applications:
 
 ```powershell
 # 1. Start all Billing services (Docker, Backend, Frontend)
-cd f:\AUDIRA-NET-BILLING\AUDIRA-BILLING
+cd f:\AUDIRA-NET-BILLING
 .\start.bat
 
-# 2. Run Flutter Mobile App on Android Emulator
-cd f:\AUDIRA-NET-BILLING\AUDIRA-NET
-flutter run -d emulator-5554
+# 2. Run Flutter Mobile App on Android Emulator (Target AVD: ISP)
+cd f:\AUDIRA-NET-BILLING
+.\start_app.bat   # (atau .\star_app.bat)
 
 # 3. Stop all background servers
 cd f:\AUDIRA-NET-BILLING\AUDIRA-BILLING

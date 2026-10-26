@@ -1,13 +1,15 @@
 @echo off
 setlocal enabledelayedexpansion
-title AUDIRA NETWORKS - ISP Mobile Client Launcher
+title AUDIRA NETWORKS - ISP Mobile Client Launcher [Target: Emulator ISP]
 
 echo ========================================================
 echo   AUDIRA NETWORKS - ISP Mobile Client Launcher
+echo   Target Device: Android Emulator [AVD: ISP]
 echo   Founder: Agus Dwi Rianto - https://audira.my.id
 echo ========================================================
 echo.
 
+REM 1. Set environment paths
 set "SCRIPT_DIR=%~dp0"
 if exist "%SCRIPT_DIR%AUDIRA-NET\pubspec.yaml" (
     set "PROJECT_ROOT=%SCRIPT_DIR%"
@@ -32,7 +34,7 @@ if defined ANDROID_HOME (
 echo [1/4] Memeriksa Flutter SDK dan Android ADB...
 where flutter >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Flutter SDK tidak ditemukan di PATH sistem!
+    echo [ERROR] Flutter SDK tidak ditemukan di PATH sistem
     echo Pastikan Flutter SDK sudah terpasang.
     pause
     exit /b 1
@@ -47,40 +49,67 @@ if %ERRORLEVEL% NEQ 0 (
 )
 echo.
 
-echo [2/4] Mendeteksi Android Emulator yang aktif...
+echo [2/4] Mendeteksi Android Emulator khusus proyek ISP...
 set "TARGET_EMU="
-set "EMU_COUNT=0"
+set "ISP_FOUND=0"
 
 for /f "tokens=1" %%d in ('adb devices ^| findstr /R "emulator-[0-9]*"') do (
-    set /a EMU_COUNT+=1
-    if not defined TARGET_EMU (
-        set "TARGET_EMU=%%d"
+    for /f "tokens=1" %%a in ('adb -s %%d emu avd name 2^>nul ^| findstr /V /I "^OK"') do (
+        if /I "%%a"=="ISP" (
+            set "TARGET_EMU=%%d"
+            set "ISP_FOUND=1"
+            echo  - [TERPILIH] Menemukan Emulator ISP aktif pada ID: %%d [AVD: ISP]
+        ) else (
+            echo  - [SKIP] Mengabaikan %%d [AVD: %%a - Proyek Lain, Jangan Digunakan]
+        )
     )
 )
 
-if "%EMU_COUNT%"=="0" (
-    echo  - Tidak ada emulator yang sedang aktif.
-    echo  - Menunggu perangkat Android / Emulator terhubung...
-    adb wait-for-device
-    set "TARGET_EMU=emulator-5554"
-) else (
-    echo  - Terdeteksi %EMU_COUNT% emulator aktif. Target: %TARGET_EMU%
+if "%ISP_FOUND%"=="0" (
+    echo.
+    echo  --------------------------------------------------------
+    echo  [PERINGATAN] Emulator dengan AVD bernama 'ISP' TIDAK DITEMUKAN.
+    echo  Emulator yang aktif saat ini adalah milik proyek lain [MDA / DC].
+    echo  Sesuai aturan isolasi sistem, proyek AUDIRA-NET TIDAK BOLEH
+    echo  dijalankan pada emulator proyek lain.
+    echo  --------------------------------------------------------
+    echo.
+    echo  Mencari AVD 'ISP' di daftar Android Studio...
+    emulator -list-avds 2>nul | findstr /I ISP >nul 2>nul
+    if !ERRORLEVEL! EQU 0 (
+        echo  - Menemukan AVD 'ISP'. Meluncurkan emulator ISP...
+        start "" "%LOCALAPPDATA%\Android\Sdk\emulator\emulator.exe" -avd ISP
+        echo  - Menunggu emulator ISP terhubung...
+        adb wait-for-device
+        for /f "tokens=1" %%d in ('adb devices ^| findstr /R "emulator-[0-9]*"') do (
+            for /f "tokens=1" %%a in ('adb -s %%d emu avd name 2^>nul ^| findstr /V /I "^OK"') do (
+                if /I "%%a"=="ISP" (
+                    set "TARGET_EMU=%%d"
+                    set "ISP_FOUND=1"
+                )
+            )
+        )
+    ) else (
+        echo  [ERROR] AVD bernama 'ISP' belum dibuat di Android Studio.
+        echo  Silakan buat AVD bernama 'ISP' atau nyalakan emulator ISP Anda.
+        echo.
+        pause
+        exit /b 1
+    )
 )
 echo.
 
-echo [3/4] Mengonfigurasi Reverse Port [Network ISP Bridge]...
-if defined TARGET_EMU (
-    echo  - Reverse port TCP 3218 [Backend NestJS API]...
-    adb -s %TARGET_EMU% reverse tcp:3218 tcp:3218 >nul 2>nul
-    echo  - Reverse port TCP 3217 [Admin Panel]...
-    adb -s %TARGET_EMU% reverse tcp:3217 tcp:3217 >nul 2>nul
-    echo  - Reverse port TCP 3219 [Customer Portal]...
-    adb -s %TARGET_EMU% reverse tcp:3219 tcp:3219 >nul 2>nul
-    echo  - Menyalakan layar emulator...
-    adb -s %TARGET_EMU% shell input keyevent 224 >nul 2>nul
-    adb -s %TARGET_EMU% shell input keyevent 82 >nul 2>nul
-    echo [OK] Reverse port aktif! Mobile app dapat mengakses API di http://localhost:3218
-)
+echo [3/4] Mengonfigurasi Reverse Port [Network ISP Bridge] ke %TARGET_EMU%...
+echo  - Reverse port TCP 3218 [Backend NestJS API]...
+adb -s %TARGET_EMU% reverse tcp:3218 tcp:3218 >nul 2>nul
+echo  - Reverse port TCP 3217 [Admin Panel]...
+adb -s %TARGET_EMU% reverse tcp:3217 tcp:3217 >nul 2>nul
+echo  - Reverse port TCP 3219 [Customer Portal]...
+adb -s %TARGET_EMU% reverse tcp:3219 tcp:3219 >nul 2>nul
+echo  - Menyalakan layar emulator ISP...
+adb -s %TARGET_EMU% shell input keyevent 224 >nul 2>nul
+adb -s %TARGET_EMU% shell input keyevent 82 >nul 2>nul
+echo [OK] Reverse port aktif. Mobile app dapat mengakses API di http://localhost:3218
 echo.
 
 echo [4/4] Memeriksa status Backend API AUDIRA ISP [Port 3218]...
@@ -96,7 +125,7 @@ if %ERRORLEVEL% EQU 0 (
 echo.
 
 echo ========================================================
-echo   MELUNCURKAN APLIKASI ISP FLUTTER KE EMULATOR [%TARGET_EMU%]
+echo   MELUNCURKAN APLIKASI ISP FLUTTER KE EMULATOR ISP [%TARGET_EMU%]
 echo ========================================================
 echo   * Petunjuk Hotkey Interaktif di Konsol Ini:
 echo     - Tekan 'r' : Hot Reload [Pembaruan UI seketika]

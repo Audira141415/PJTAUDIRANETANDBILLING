@@ -41,3 +41,13 @@ Any questions, bug disclosures, partnership inquiries, or commercial licensing r
 For security reports:
 - Always include a clear description of the vulnerability, potential impact, and reproduction steps.
 - Do NOT include live credentials, passwords, API keys, or sensitive customer data in reports.
+
+---
+
+## 📱 Multi-Project Android Emulator Isolation Directive (STRICT)
+1. **Target Emulator Name**: Proyek `AUDIRA-NET-BILLING` (klien Flutter `AUDIRA-NET`) **HANYA BOLEH** dijalankan pada Android Emulator dengan AVD bernama **`ISP`**.
+2. **Isolasi Proyek Lain**: Emulator dengan AVD seperti **`MDA`** (proyek Comic Reader) atau **`DC`** (proyek Data Center OS) adalah milik proyek lain yang berjalan bersamaan di host.
+3. **Aturan Mutlak**:
+   - **DILARANG KERAS** menggunakan, meluncurkan aplikasi, melakukan `adb reverse`, mematikan, atau mengganggu emulator selain yang bernama **`ISP`**.
+   - Skrip peluncur resmi adalah [start_app.bat](file:///f:/AUDIRA-NET-BILLING/start_app.bat) atau aliasnya [star_app.bat](file:///f:/AUDIRA-NET-BILLING/star_app.bat). Skrip ini secara otomatis memvalidasi AVD name via `adb -s <id> emu avd name` dan melewatkan (`SKIP`) emulator `MDA`, `DC`, atau emulator proyek lainnya.
+

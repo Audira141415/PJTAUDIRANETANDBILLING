@@ -69,8 +69,8 @@
 | **PostgreSQL Database**| Postgres 15 (Docker) | `5455` | Primary relational database (`sebilling-postgres`) |
 | **Redis Cache / Queue**| Redis 7 (Docker) | `6379` | Fast in-memory cache, background queues (`sebilling-redis`) |
 | **Prisma Studio** | Prisma CLI | `5555` | GUI visual inspeksi data database (opsional) |
-| **FreeRADIUS Auth/Acct**| FreeRADIUS daemon | `1812/1813` | Autentikasi PPPoE & Hotspot NAS Mikrotik |
-| **Android Emulator** | QEMU / AVD `ISP` | `5554/5555` | Lingkungan runtime uji coba Flutter & Expo mobile |
+| **Android Emulator** | QEMU / AVD `ISP` | Port Dinamis (`5554-5558`) | Lingkungan runtime uji coba Flutter `AUDIRA-NET` (khusus AVD `ISP`, abaikan `MDA`/`DC`) |
+
 
 ---
 

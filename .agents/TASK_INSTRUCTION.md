@@ -67,18 +67,24 @@
 
 ## 4. Workflow Menguji Aplikasi Mobile di Emulator
 
-1. **Pastikan Emulator Aktif**:
-   Jalankan `adb devices` dan pastikan `emulator-5554` terdeteksi.
-2. **Reverse Port API**:
-   Jalankan port forwarding agar emulator dapat mengakses backend host:
+1. **Pastikan Emulator Khusus 'ISP' Aktif**:
+   - Selalu gunakan emulator dengan AVD bernama **`ISP`**.
+   - **JANGAN PERNAH** menggunakan emulator `MDA` atau `DC` karena milik proyek lain yang berjalan bersamaan.
+   - Cara termudah dan teraman: Jalankan skrip `start_app.bat` atau `star_app.bat` dari root atau folder `AUDIRA-NET` (skrip otomatis mendeteksi dan mengunci target ke AVD `ISP`).
+2. **Reverse Port API Manual (Jika tidak lewat start_app.bat)**:
    ```powershell
-   adb reverse tcp:3218 tcp:3218
-   adb reverse tcp:4000 tcp:4000
+   # Dapatkan device ID emulator ISP (misal emulator-5558)
+   adb -s <TARGET_EMU_ISP> reverse tcp:3218 tcp:3218
+   adb -s <TARGET_EMU_ISP> reverse tcp:3217 tcp:3217
    ```
 3. **Kompilasi & Jalankan**:
    ```powershell
+   # Jalankan via launcher terisolasi:
+   .\start_app.bat
+   # Atau langsung dengan flutter:
    cd f:\AUDIRA-NET-BILLING\AUDIRA-NET
-   flutter run -d emulator-5554
+   flutter run -d <TARGET_EMU_ISP>
    ```
 4. **Verifikasi Layar**:
-   Ambil screenshot via `adb shell screencap -p /sdcard/screen.png` untuk memastikan UI tampil sempurna.
+   Ambil screenshot via `adb -s <TARGET_EMU_ISP> shell screencap -p /sdcard/screen.png` untuk memastikan UI tampil sempurna.
+

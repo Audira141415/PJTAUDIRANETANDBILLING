@@ -55,3 +55,8 @@
    - Kegagalan query awal tidak boleh membuat aplikasi macet di splash screen.
 2. **Backend Connectivity from Emulator**:
    - Di Android emulator, gunakan reverse proxy ADB (`adb reverse tcp:3218 tcp:3218`) atau alamat IP host emulator `10.0.2.2:3218` agar aplikasi dapat berkomunikasi dengan backend NestJS di mesin lokal.
+3. **Mandatory AVD Name Isolation (ISP ONLY)**:
+   - Proyek ini HANYA boleh berjalan di Android Emulator dengan AVD bernama **`ISP`**.
+   - Emulator dengan AVD bernama **`MDA`** atau **`DC`** adalah milik proyek lain yang sedang aktif di workstation host.
+   - **DILARANG KERAS** menargetkan atau mengganggu emulator selain `ISP`. Gunakan selalu skrip `start_app.bat` atau `star_app.bat` yang memiliki proteksi deteksi otomatis nama AVD.
+
