@@ -85,6 +85,16 @@
   - Audit live HTTP terhadap seluruh 134 rute di `http://localhost:3217` (100% 200 OK dengan HTML substantial >100KB, 0 crash, 0 blank page).
   - Audit kode statis: 0 dead buttons, 0 dead anchors across all pages.
   - Implementasi komponen [ReportSubTabDetail.tsx](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/frontend/src/components/ReportSubTabDetail.tsx) pada 12 halaman laporan (`reports/customer`, `executive`, `finance`, `invoice`, `marketing`, `package`, `payment`, `revenue`, `sales`, `subscription`, `whatsapp`, dan `whatsapp/reports`), mengeliminasi seluruh tab placeholder kosong ("sedang dalam pengembangan") menjadi dashboard analitik interaktif ber-KPI, chart tren Recharts, dan tabel data granular.
+- [x] **Full-Stack BSS/OSS Next-Gen Features Implemented (Radius & TR-069 Comparison Implementation)**:
+  - **Customer Optical Self-Diagnostic Modal & TR-069 Remote Reboot**:
+    - Ditambahkan pada Customer Dashboard internal ([customer/dashboard.tsx](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/frontend/src/pages/customer/dashboard.tsx)) dan Customer Portal publik ([DashboardView.tsx](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/customer-portal/src/components/portal/DashboardView.tsx)).
+    - Memvisualisasikan RX Optical Power (-19.45 dBm), TX Power (+2.40 dBm), suhu ONT, latensi ping gateway, konfigurasi dual-band WiFi (2.4G & 5G AC), serta tombol kirim sinyal reboot TR-069 via GenieACS dengan umpan balik status real-time.
+  - **WhatsApp Bot Live Shortcut Commands**:
+    - Diimplementasikan di [whatsapp-bot.service.ts](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/backend/src/whatsapp/whatsapp-bot.service.ts).
+    - Menambahkan perintah kilat: `!ceksinyal`, `!cekmodem`, `!reboot`, `!tagihan`, `!wifi`, `!cs` sehingga pelanggan dapat mengecek redaman optik dan merestart modem langsung dari WhatsApp tanpa eskalasi manual.
+  - **Proactive High Optical Loss Warning Banner & SPK Generator di NOC Dashboard**:
+    - Diimplementasikan di [noc.tsx](file:///f:/AUDIRA-NET-BILLING/AUDIRA-BILLING/apps/frontend/src/pages/dashboard/noc.tsx).
+    - Memantau ONT dengan redaman kritis (&gt; -27.0 dBm) secara real-time, dilengkapi AI Root Cause diagnostic (analisis tekukan dropcore / konektor kotor / splice closure), tombol polling ulang TR-069 live, penerbitan SPK Teknisi Lapangan 1-klik, dan integrasi ke Peta GIS ODP.
 
 ### 🔄 In-Progress / Ongoing Focus
 - [ ] **Sinkronisasi Memori Jangka Panjang (LTM Hub)**:
