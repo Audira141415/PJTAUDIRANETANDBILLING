@@ -1,0 +1,943 @@
+{
+  "httpResults": [
+    {
+      "route": "/404",
+      "status": 404,
+      "length": 101613,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/admin/customers",
+      "status": 200,
+      "length": 102479,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/admin/login",
+      "status": 200,
+      "length": 100150,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/admin/sales",
+      "status": 200,
+      "length": 112164,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/analytics",
+      "status": 200,
+      "length": 100116,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/attendance-monitoring",
+      "status": 200,
+      "length": 99101,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/attendance",
+      "status": 200,
+      "length": 101388,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/audit-logs",
+      "status": 200,
+      "length": 108333,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/automation",
+      "status": 200,
+      "length": 106587,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/backup",
+      "status": 200,
+      "length": 110833,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/booster",
+      "status": 200,
+      "length": 105314,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/customer/dashboard",
+      "status": 200,
+      "length": 10982,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/customer/invoices",
+      "status": 200,
+      "length": 6397,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/customer/login",
+      "status": 200,
+      "length": 5147,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/customer/profile",
+      "status": 200,
+      "length": 5963,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/customer/tickets",
+      "status": 200,
+      "length": 6666,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/cuti",
+      "status": 200,
+      "length": 101380,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/dashboard/billing",
+      "status": 200,
+      "length": 108568,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/dashboard/noc",
+      "status": 200,
+      "length": 108646,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/debug/auth",
+      "status": 200,
+      "length": 98969,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/debug/test-api",
+      "status": 200,
+      "length": 99857,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/dokumentasi",
+      "status": 200,
+      "length": 108282,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/field-service",
+      "status": 200,
+      "length": 107299,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/akun",
+      "status": 200,
+      "length": 142635,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/anggaran",
+      "status": 200,
+      "length": 133579,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/arus-kas",
+      "status": 200,
+      "length": 128341,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/dashboard",
+      "status": 200,
+      "length": 143957,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/laba-rugi",
+      "status": 200,
+      "length": 135107,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/laporan",
+      "status": 200,
+      "length": 140290,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/neraca",
+      "status": 200,
+      "length": 127032,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/pajak",
+      "status": 200,
+      "length": 150971,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/pendapatan",
+      "status": 200,
+      "length": 141633,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/pengeluaran",
+      "status": 200,
+      "length": 144314,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/rekonsiliasi",
+      "status": 200,
+      "length": 148862,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/settings",
+      "status": 200,
+      "length": 146739,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/finance/transaksi",
+      "status": 200,
+      "length": 148030,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/forgot-password",
+      "status": 200,
+      "length": 6330,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/franchise",
+      "status": 200,
+      "length": 101841,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/gaji",
+      "status": 200,
+      "length": 102856,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/genieacs",
+      "status": 200,
+      "length": 113434,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/hotspot",
+      "status": 200,
+      "length": 107855,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/hrm-dashboard",
+      "status": 200,
+      "length": 115670,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "length": 152903,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/infrastruktur/map",
+      "status": 200,
+      "length": 122634,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/infrastruktur/odp",
+      "status": 200,
+      "length": 105802,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/infrastruktur/olt",
+      "status": 200,
+      "length": 106085,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/inventory",
+      "status": 200,
+      "length": 100701,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/batch-generate",
+      "status": 200,
+      "length": 142970,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/batch-send",
+      "status": 200,
+      "length": 159295,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/credit-note",
+      "status": 200,
+      "length": 131572,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/draft",
+      "status": 200,
+      "length": 110580,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/due",
+      "status": 200,
+      "length": 112780,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/export",
+      "status": 200,
+      "length": 133807,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/generate",
+      "status": 200,
+      "length": 121558,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/history",
+      "status": 200,
+      "length": 163199,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/overdue",
+      "status": 200,
+      "length": 116004,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/public/INV-2026-07-0012",
+      "status": 200,
+      "length": 13095,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/recurring",
+      "status": 200,
+      "length": 149190,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/refund",
+      "status": 200,
+      "length": 127380,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/semua",
+      "status": 200,
+      "length": 117141,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/settings",
+      "status": 200,
+      "length": 130936,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/tax",
+      "status": 200,
+      "length": 150572,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/templates",
+      "status": 200,
+      "length": 152101,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice/INV-2026-07-0012",
+      "status": 200,
+      "length": 123982,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoice",
+      "status": 200,
+      "length": 110517,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/invoices-admin",
+      "status": 200,
+      "length": 99183,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/jadwal-kerja",
+      "status": 200,
+      "length": 101867,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/karyawan",
+      "status": 200,
+      "length": 102910,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/keuangan",
+      "status": 200,
+      "length": 99403,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/kinerja",
+      "status": 200,
+      "length": 101194,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/kolektor",
+      "status": 200,
+      "length": 107119,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/layanan",
+      "status": 200,
+      "length": 124852,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/login",
+      "status": 200,
+      "length": 9012,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/mikrotik",
+      "status": 200,
+      "length": 105676,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/modem-monitor",
+      "status": 200,
+      "length": 107327,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/noc",
+      "status": 200,
+      "length": 104823,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/operational",
+      "status": 200,
+      "length": 99457,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin/kategori",
+      "status": 200,
+      "length": 123698,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin/non-aktif",
+      "status": 200,
+      "length": 134306,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin/promo",
+      "status": 200,
+      "length": 143185,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin/speed",
+      "status": 200,
+      "length": 140866,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin/tambah",
+      "status": 200,
+      "length": 116854,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/packages-admin",
+      "status": 200,
+      "length": 121459,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/paket",
+      "status": 200,
+      "length": 130708,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/confirmation",
+      "status": 200,
+      "length": 121678,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/history",
+      "status": 200,
+      "length": 160391,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/methods",
+      "status": 200,
+      "length": 139438,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/reconciliation",
+      "status": 200,
+      "length": 144033,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/refunds",
+      "status": 200,
+      "length": 126171,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment/settings",
+      "status": 200,
+      "length": 126959,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/payment",
+      "status": 200,
+      "length": 119874,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/expired",
+      "status": 200,
+      "length": 123492,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/import",
+      "status": 200,
+      "length": 111824,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/pending",
+      "status": 200,
+      "length": 122140,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/suspend",
+      "status": 200,
+      "length": 121984,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/tambah",
+      "status": 200,
+      "length": 128523,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan/INV-2026-07-0012",
+      "status": 200,
+      "length": 126930,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pelanggan",
+      "status": 200,
+      "length": 113736,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/pengaturan",
+      "status": 200,
+      "length": 116351,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "length": 8890,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/register",
+      "status": 200,
+      "length": 10575,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/customer",
+      "status": 200,
+      "length": 150059,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/executive",
+      "status": 200,
+      "length": 142026,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/finance",
+      "status": 200,
+      "length": 159602,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/invoice",
+      "status": 200,
+      "length": 162754,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/marketing",
+      "status": 200,
+      "length": 171097,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/package",
+      "status": 200,
+      "length": 165707,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/payment",
+      "status": 200,
+      "length": 161348,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/revenue",
+      "status": 200,
+      "length": 145988,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/sales",
+      "status": 200,
+      "length": 161327,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/subscription",
+      "status": 200,
+      "length": 163367,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/tax",
+      "status": 200,
+      "length": 165472,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports/whatsapp",
+      "status": 200,
+      "length": 118617,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/reports",
+      "status": 200,
+      "length": 108921,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/sales/daftar",
+      "status": 200,
+      "length": 111216,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/services-admin",
+      "status": 200,
+      "length": 103011,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/technician-checkin",
+      "status": 200,
+      "length": 106476,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/technician-monitoring",
+      "status": 200,
+      "length": 110794,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/technician",
+      "status": 200,
+      "length": 102756,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "length": 8956,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/tickets",
+      "status": 200,
+      "length": 106154,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/transaksi",
+      "status": 200,
+      "length": 110234,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/auto-reply",
+      "status": 200,
+      "length": 129695,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/billing-scheduler",
+      "status": 200,
+      "length": 120893,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/campaigns",
+      "status": 200,
+      "length": 116326,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/chat",
+      "status": 200,
+      "length": 107664,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/contacts",
+      "status": 200,
+      "length": 106079,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/label",
+      "status": 200,
+      "length": 154054,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/quick-reply",
+      "status": 200,
+      "length": 128968,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/reports",
+      "status": 200,
+      "length": 166394,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/settings",
+      "status": 200,
+      "length": 126173,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp/templates",
+      "status": 200,
+      "length": 130723,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/whatsapp",
+      "status": 200,
+      "length": 108198,
+      "hasContent": true,
+      "isNextError": false
+    },
+    {
+      "route": "/work-order-detail",
+      "status": 200,
+      "length": 116722,
+      "hasContent": true,
+      "isNextError": false
+    }
+  ],
+  "codeAuditResults": []
+}

@@ -35,3 +35,4 @@
 | **08. Matriks Layanan & Paket**| [SERVICE_AND_PACKAGE_MATRIX.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/SERVICE_AND_PACKAGE_MATRIX.md) | Katalog paket internet, bandwidth simetris/asimetris, SLA 99.8%, booster, saluran bayar. |
 | **09. Analitik & Telemetri** | [ANALYTICS_AND_CONVERSION.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/ANALYTICS_AND_CONVERSION.md) | Metrik finansial ISP (MRR, ARPU, Churn, Collection Rate) & telemetri redaman optik TR-069. |
 | **10. Riwayat & Roadmap** | [UPDATE_HISTORY_AND_ROADMAP.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/UPDATE_HISTORY_AND_ROADMAP.md) | Changelog versi (v1.0.0 s/d v2.0.0 Theme Harmonized) dan roadmap multi-NAS MikroTik. |
+| **11. RBAC & Multi-Role Personas** | [ROLE_BASED_ACCESS_AND_PERSONAS.md](file:///f:/AUDIRA-NET-BILLING/.agents/brain/ROLE_BASED_ACCESS_AND_PERSONAS.md) | Arsitektur peran (Owner, NOC, Teknisi, Customer), matriks hak akses, dan adaptasi dashboard. |

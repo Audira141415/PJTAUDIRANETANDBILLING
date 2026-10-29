@@ -1,0 +1,86 @@
+[
+  {
+    "no": 1,
+    "name": "📢 Announcements",
+    "threadId": 2,
+    "desc": "Pengumuman internal"
+  },
+  {
+    "no": 2,
+    "name": "💳 Billing & Payment",
+    "desc": "Tagihan dan pembayaran",
+    "threadId": 4
+  },
+  {
+    "no": 3,
+    "name": "👥 Customer Management",
+    "desc": "Registrasi dan pengelolaan pelanggan",
+    "threadId": 6
+  },
+  {
+    "no": 4,
+    "name": "🌐 Network Monitoring",
+    "desc": "Status jaringan dan perangkat",
+    "threadId": 8
+  },
+  {
+    "no": 5,
+    "name": "🚨 Network Incidents",
+    "desc": "Gangguan jaringan",
+    "threadId": 10
+  },
+  {
+    "no": 6,
+    "name": "🎫 Support Tickets",
+    "desc": "Keluhan dan tiket pelanggan",
+    "threadId": 12
+  },
+  {
+    "no": 7,
+    "name": "🛠️ Field Operations",
+    "desc": "Pekerjaan teknisi",
+    "threadId": 14
+  },
+  {
+    "no": 8,
+    "name": "🔌 Installation & Activation",
+    "desc": "Instalasi dan aktivasi pelanggan",
+    "threadId": 16
+  },
+  {
+    "no": 9,
+    "name": "📡 Infrastructure",
+    "desc": "Router, OLT, ODP, ODC, POP, dan infrastruktur lainnya sesuai kebutuhan",
+    "threadId": 18
+  },
+  {
+    "no": 10,
+    "name": "📊 Reports & Analytics",
+    "desc": "Laporan operasional dan statistik",
+    "threadId": 20
+  },
+  {
+    "no": 11,
+    "name": "⚙️ System & Automation",
+    "desc": "Status bot, API, database, dan automasi",
+    "threadId": 22
+  },
+  {
+    "no": 12,
+    "name": "🤖 AI Assistant",
+    "desc": "Analisis dan bantuan AI",
+    "threadId": 24
+  },
+  {
+    "no": 13,
+    "name": "📝 Change Management",
+    "desc": "Perubahan konfigurasi dan pekerjaan terencana",
+    "threadId": 26
+  },
+  {
+    "no": 14,
+    "name": "💰 Finance Summary",
+    "desc": "Ringkasan keuangan dengan akses terbatas",
+    "threadId": 28
+  }
+]
