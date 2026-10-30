@@ -26,17 +26,19 @@ if exist "%~dp0AUDIRA-BILLING\stop-servers.bat" (
     call "%~dp0AUDIRA-BILLING\stop-servers.bat"
 )
 
-REM 2. Pastikan port 3217, 3218, 3219, 3001 benar-benar mati
-for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3217 " ^| findstr "LISTENING"') do (
+REM 2. Pastikan port 3217, 3218, 3219, 3001 benar-benar mati via PowerShell & Netstat
+powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 3217,3218,3219,3001 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }" >nul 2>&1
+
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3217" ^| findstr "LISTENING"') do (
     taskkill /F /PID %%a >nul 2>&1
 )
-for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3218 " ^| findstr "LISTENING"') do (
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3218" ^| findstr "LISTENING"') do (
     taskkill /F /PID %%a >nul 2>&1
 )
-for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3219 " ^| findstr "LISTENING"') do (
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3219" ^| findstr "LISTENING"') do (
     taskkill /F /PID %%a >nul 2>&1
 )
-for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3001 " ^| findstr "LISTENING"') do (
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":3001" ^| findstr "LISTENING"') do (
     taskkill /F /PID %%a >nul 2>&1
 )
 

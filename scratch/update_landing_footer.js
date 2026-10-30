@@ -234,3 +234,4 @@ if (footerStart !== -1 && footerEnd !== -1) {
 } else {
   console.error('Could not find footer boundaries:', { footerStart, footerEnd });
 }
+
