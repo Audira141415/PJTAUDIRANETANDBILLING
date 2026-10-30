@@ -1,35 +1,34 @@
 @echo off
-chcp 65001 >nul
+setlocal enabledelayedexpansion
 cls
-title AUDIRA NET & BILLING - Server Launcher
+title AUDIRA NET ^& BILLING - Server Launcher
 cd /d "%~dp0"
 
 echo.
-echo  ╔════════════════════════════════════════════════════════════════════════╗
-echo  ║                                                                        ║
-echo  ║            █████╗ ██╗   ██╗██████╗ ██╗██████╗  █████╗                 ║
-echo  ║           ██╔══██╗██║   ██║██╔══██╗██║██╔══██╗██╔══██╗                ║
-echo  ║           ███████║██║   ██║██║  ██║██║██████╔╝███████║                ║
-echo  ║           ██╔══██║██║   ██║██║  ██║██║██╔══██╗██╔══██║                ║
-echo  ║           ██║  ██║╚██████╔╝██████╔╝██║██║  ██║██║  ██║                ║
-echo  ║           ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝                ║
-echo  ║                                                                        ║
-echo  ╚════════════════════════════════════════════════════════════════════════╝
+echo  +========================================================================+
+echo  ^|                                                                        ^|
+echo  ^|      AAA   U   U DDDD   III RRRR    AAA        N   N EEEEE TTTTT       ^|
+echo  ^|     A   A  U   U D   D   I  R   R  A   A       NN  N E       T         ^|
+echo  ^|     AAAAA  U   U D   D   I  RRRR   AAAAA  ---  N N N EEEEE   T         ^|
+echo  ^|     A   A  U   U D   D   I  R  R   A   A       N  NN E       T         ^|
+echo  ^|     A   A   UUU  DDDD   III R   R  A   A       N   N EEEEE   T         ^|
+echo  ^|                                                                        ^|
+echo  +========================================================================+
 echo.
-echo           Audira Net & Billing System - Master Launcher
-echo  ════════════════════════════════════════════════════════════════════════
+echo           Audira Net ^& Billing System - Master Launcher
+echo  ========================================================================
 echo.
 echo  Pilih opsi layanan yang ingin dijalankan:
 echo.
 echo  [1] Jalankan Semua Server Billing (Backend: 3218, Admin: 3217, Portal: 3219) [DEFAULT]
 echo  [2] Jalankan Frontend Admin Saja (Port 3217)
 echo  [3] Jalankan Backend API Saja (Port 3218)
-echo  [4] Jalankan Customer Portal & Landing Saja (Port 3219)
+echo  [4] Jalankan Customer Portal ^& Landing Saja (Port 3219)
 echo  [5] Jalankan Mobile App AUDIRA-NET (Flutter)
 echo  [6] Jalankan Full Integration (Billing + Mobile)
 echo  [0] Keluar
 echo.
-echo  ════════════════════════════════════════════════════════════════════════
+echo  ========================================================================
 set /p "CHOICE=Masukkan pilihan Anda [1-6, default=1]: "
 
 if "%CHOICE%"=="" set "CHOICE=1"
@@ -56,7 +55,7 @@ exit /b 0
 echo.
 echo [*] Meluncurkan Frontend Admin (Port 3217)...
 cd /d "%~dp0AUDIRA-BILLING\apps\frontend"
-start "AudiraNET Frontend" cmd /k "chcp 65001 >nul && color 0E && echo. && echo AUDIRA WEB ADMIN - PORT 3217 && echo. && npm run dev"
+start "AudiraNET Frontend" cmd /k "color 0E && echo. && echo AUDIRA WEB ADMIN - PORT 3217 && echo. && npm run dev"
 echo [OK] Frontend berhasil dijalankan di http://localhost:3217
 pause
 exit /b 0
@@ -65,16 +64,16 @@ exit /b 0
 echo.
 echo [*] Meluncurkan Backend API (Port 3218)...
 cd /d "%~dp0AUDIRA-BILLING\apps\backend"
-start "AudiraNET Backend" cmd /k "chcp 65001 >nul && color 0B && echo. && echo AUDIRA BACKEND API - PORT 3218 && echo. && pnpm run dev"
+start "AudiraNET Backend" cmd /k "color 0B && echo. && echo AUDIRA BACKEND API - PORT 3218 && echo. && pnpm run dev"
 echo [OK] Backend berhasil dijalankan di http://localhost:3218
 pause
 exit /b 0
 
 :opt_portal
 echo.
-echo [*] Meluncurkan Customer Portal & Landing (Port 3219)...
+echo [*] Meluncurkan Customer Portal ^& Landing (Port 3219)...
 cd /d "%~dp0AUDIRA-BILLING\apps\customer-portal"
-start "AudiraNET Customer Portal" cmd /k "chcp 65001 >nul && color 0A && echo. && echo AUDIRA CUSTOMER PORTAL - PORT 3219 && echo. && npm run dev"
+start "AudiraNET Customer Portal" cmd /k "color 0A && echo. && echo AUDIRA CUSTOMER PORTAL - PORT 3219 && echo. && npm run dev"
 echo [OK] Customer Portal berhasil dijalankan di http://localhost:3219
 pause
 exit /b 0

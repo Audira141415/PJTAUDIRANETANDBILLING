@@ -1,10 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
-title AUDIRA NET & BILLING - Web Ecosystem Launcher [Web Only]
+title AUDIRA NET ^& BILLING - Web Ecosystem Launcher [Web Only]
 
 echo ========================================================
-echo   AUDIRA NET & BILLING - Web Ecosystem Launcher
-echo   Mode: Khusus Web & Backend (Tanpa Mobile Emulator)
+echo   AUDIRA NET ^& BILLING - Web Ecosystem Launcher
+echo   Mode: Khusus Web ^& Backend (Tanpa Mobile Emulator)
 echo   Founder: Agus Dwi Rianto - https://audira.my.id
 echo ========================================================
 echo.
@@ -64,15 +64,17 @@ echo.
 echo ========================================================
 echo   SELURUH LAYANAN WEB AUDIRA BERHASIL DIJALANKAN
 echo ========================================================
-echo   * Web Admin Portal     : http://localhost:3217
-echo   * Backend REST API     : http://localhost:3218
-echo   * Customer Portal      : http://localhost:3219
-echo   * Database PostgreSQL  : localhost:5455
-echo   * Redis Cache Server   : localhost:6379
-echo   * Mobile Emulator      : TIDAK DIAKTIFKAN [Hemat Resource RAM]
+echo   * Landing Page Produk (SaaS) : http://localhost:3217/landing [Brosur Jual ala SeBilling]
+echo   * Web Admin ^& NOC Cockpit    : http://localhost:3217
+echo   * Customer Self-Care Portal  : http://localhost:3219
+echo   * Backend REST API           : http://localhost:3218
+echo   * Database PostgreSQL        : localhost:5455
+echo   * Redis Cache Server         : localhost:6379
+echo   * Mobile Emulator            : TIDAK DIAKTIFKAN [Hemat Resource RAM]
 echo ========================================================
 echo.
-echo Membuka portal di browser default...
+echo Membuka portal ^& landing page di browser default...
+start http://localhost:3217/landing
 start http://localhost:3217
 start http://localhost:3219
 
